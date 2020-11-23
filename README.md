@@ -6,9 +6,9 @@ Health Hub is a small-scale, user friendly medical app that allows for patients 
 It also provides an easy to use communication pipeline between patients and their chosen medical experts.
 
 This project was made by:
-Sebastien Kronlund: https://github.com/SebastienKronlund
-Michael Wearing: https://github.com/MichaelWearing
-Alexander Sandberg: https://github.com/Rhodox
+- Sebastien Kronlund: https://github.com/SebastienKronlund
+- Michael Wearing: https://github.com/MichaelWearing
+- Alexander Sandberg: https://github.com/Rhodox
 
 ## Overview
 
