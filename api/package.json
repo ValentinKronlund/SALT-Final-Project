@@ -1,0 +1,27 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "API for Health Hub app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebastienKronlund/SALT-Final-Project.git"
+  },
+  "author": "Sebastien Kronlund, Michael Wearing, Alexander Sandberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SebastienKronlund/SALT-Final-Project/issues"
+  },
+  "homepage": "https://github.com/SebastienKronlund/SALT-Final-Project#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

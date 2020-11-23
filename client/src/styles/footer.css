@@ -1,0 +1,42 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    bottom: 0;
+    height: 8em;
+    width: 100%;
+
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    letter-spacing: .1em;
+
+    color: var(--lightest-mint);
+    background-color: var(--darkest-mint);
+
+    overflow: hidden;
+}
+
+.created-by {
+    margin: 0.2em 1em;
+    font-size: 1.6em;
+}
+
+.author-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.author {
+    margin: 0em 1em;
+    font-size: 1.8em;
+    color: var(--lightest-mint);
+    text-decoration: none;
+}
+
+.author-paragraph {
+    margin: 0;
+}

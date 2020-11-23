@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+
+:root {
+
+    --darkest-mint: #17A744;
+    --dark-mint: #21E15D;
+    --main-mint: #4EE77E;
+    --light-mint: #6CEB94;
+    --lightest-mint: #a8f3bf;
+
+    --darkest-blue: #0088A0;
+    --dark-blue: #00B3D3;
+    --main-blue: #18DCFF;
+    --light-blue: #39F8F5;
+    --lightest-blue: #A0F1FF;
+
+    --darkest-accent: #FE7C00;
+    --dark-accent: #FF8E21;
+    --main-accent: #FF9F43;
+    --light-accent: #FFB065;
+
+    --main-white: #fff;
+    --main-black: #161616;
+}

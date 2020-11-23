@@ -1,0 +1,18 @@
+Base Patient Schema:
+    id: STRING
+    firstname: STRING
+    lastname: STRING
+    personnummer: STRING
+    phonenumber: STRING
+    email: STRING
+    adress: OBJ (street, city, postalcode)
+
+    *appointments: ARRAY of OBJ
+    *messages: OBJ
+    *diagnoses: ARRAY of OBJ
+    *prescriptions: ARRAY of OBJ
+    *notifications: BOOL
+
+    **hospital: OBJ
+    **billing:
+

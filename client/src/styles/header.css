@@ -1,0 +1,34 @@
+.header {
+    background-color: var(--darkest-mint);
+}
+
+.header-link {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.header-title {
+
+    margin: 0.2em .1em;
+
+    font-size: 6em;
+    font-family: 'Righteous', cursive;
+
+    color: transparent;
+    -webkit-text-stroke-width: .5px;
+    -webkit-text-stroke-color: white;
+
+    transition: all .2s ease-in-out;
+}
+
+.header-title:hover {
+    color: var(--main-mint);
+}
+
+.header-icon {
+    width: 90px; 
+    height: 75px;
+}
