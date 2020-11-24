@@ -1,12 +1,19 @@
 Base Patient Schema:
     id: STRING
+    username: STRING
+    password: STRING
     firstname: STRING
     lastname: STRING
     personnummer: STRING
     phonenumber: STRING
     email: STRING
-    adress: OBJ (street, city, postalcode)
+    address: OBJ {
+        street: STRING
+        city: STRING
+        postalcode: STRING
+    }
 
+    *doctors: (link to other database of employees?)
     *appointments: ARRAY of OBJ
     *messages: OBJ
     *diagnoses: ARRAY of OBJ

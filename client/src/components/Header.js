@@ -10,6 +10,9 @@ const Header = () => {
 				<h1 className="header-title">Health Hub</h1>
 				<img className="header-icon" src={logo} alt="Health Hub Icon"></img>
 			</Link>
+			<Link to="/login" className="header-logout">
+				<h2>Log out</h2>
+			</Link>
 		</header>
 	);
 };

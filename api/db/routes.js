@@ -9,13 +9,21 @@ router.get("/", async (req, res) => {
 
 	let data;
 
-	if (req.query.firstName) {
-		data = await queries.getPerson(rawData, req.query.firstName);
-	} else {
-		data = await queries.getAll(rawData);
+	try {
+		if (req.query.firstName) {
+			data = await queries.getPerson(rawData, req.query.firstName);
+		} else {
+			data = await queries.getAll(rawData);
+		}
+	} catch (e) {
+		res.json(`ERROR: ${e}`).status(500).end();
 	}
 
-	res.json(data).status(200).end();
+	if (data.length === 0) {
+		res.json("No entries").status(204).end();
+	} else {
+		res.json(data).status(200).end();
+	}
 
 	/*   const rawData = await mongo.db();
   let data;
@@ -45,8 +53,11 @@ router.get('/:id', async (req, res) => {
 router.put("/", async (req, res) => {
 	const rawData = await mongo.db();
 
-	const person = await queries.getPerson(rawData, req.query.firstName);
-	console.log("\n---- Person to be PUT is: ----\n", person);
+	try {
+		const person = await queries.getPerson(rawData, req.query.firstName);
+	} catch (e) {
+		res.json(`ERROR: ${e}`).status(500).end();
+	}
 
 	/* 	const updatedPerson = {
 		"firstName": req.body.firstName || person.firstName,
@@ -65,6 +76,8 @@ router.put("/", async (req, res) => {
 		{ firstName: req.query.firstName },
 		{
 			$set: {
+				username: req.body.username || person.username,
+				password: req.body.password || person.password,
 				firstName: req.body.firstName || person.firstName,
 				lastName: req.body.lastName || person.lastName,
 				personnummer: req.body.personnummer || person.personnummer,
@@ -84,39 +97,40 @@ router.put("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
 	const rawData = await mongo.db();
+	let data;
 
 	const person = {
+		"username": req.body.username,
+		"password": req.body.password,
 		"firstName": req.body.firstName,
 		"lastName": req.body.lastName,
 		"personnummer": req.body.personnummer,
 		"phonenumber": req.body.phonenumber,
 		"email": req.body.email,
 		"adress": {
-			"street": req.body.address.street,
-			"city": req.body.address.city,
-			"postalcode": req.body.address.postalcode,
+			"street": req.body.adress.street,
+			"city": req.body.adress.city,
+			"postalcode": req.body.adress.postalcode,
 		},
 	};
-
-	const data = await rawData.insertOne(person);
+	try {
+		data = await rawData.insertOne(person);
+	} catch (e) {
+		res.json(`ERROR: ${e}`).status(500).end();
+	}
 
 	res.json(data).status(200).end();
 });
 
 router.delete("/", async (req, res) => {
-	await mongo.db().deleteOne({ "firstName": req.query.name });
+	const collection = await mongo.db();
+	try {
+		collection.deleteOne({ "firstName": req.query.name });
+	} catch (e) {
+		res.json(`ERROR: ${e}`).status(500).end();
+	}
 
-	/*   const rawData = await mongo.db();
-
-  const data = await rawData.updateOne(
-    { id: req.params.reviewId },
-    { $pull: { upvotes: req.body.name } }
-  );
-
-  res
-    .json(data)
-    .status(200)
-    .end(); */
+	res.json("Items have been deleted").status(204).end();
 });
 
 module.exports = router;
