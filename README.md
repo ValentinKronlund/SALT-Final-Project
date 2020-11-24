@@ -5,6 +5,11 @@ This is our final project entry for the three month </SALT> Career Program.
 Health Hub is a small-scale, user friendly medical app that allows for patients to stay up to date with their medical needs.
 It also provides an easy to use communication pipeline between patients and their chosen medical experts.
 
+This project was made in a joint effort by:
+- Sebastien Kronlund: https://github.com/SebastienKronlund
+- Michael Wearing: https://github.com/MichaelWearing
+- Alexander Sandberg: https://github.com/Rhodox
+
 ## Overview
 
 We intend to create a simple general health app which helps users plan out their day, stay in touch with their medical experts, as well get help for personal medical and mental health needs.
