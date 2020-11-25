@@ -44,7 +44,7 @@ const CreateUser = () => {
 					personnummer: Personnummer,
 					phonenumber: Phonenumber,
 					email: Email,
-					adress: {
+					address: {
 						street: nameCapitalize(Street),
 						city: nameCapitalize(City),
 						postalcode: PostalCode,

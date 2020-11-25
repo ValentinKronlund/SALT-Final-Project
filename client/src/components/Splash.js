@@ -31,20 +31,26 @@ const Splash = () => {
 							{correspondants.map((corr, i) => {
 								const latestReceived = usersMessages[corr].received[0];
 								return (
-									<div key={i}>
-										<Icon
-											icon={latestReceived.read ? bxMessageCheck : bxMessageDetail}
-											style={{ fontSize: "28px" }}
-										/>
-										<p className="correspondant">{corr}</p>
-										<div className="message-container">
-											<p>{latestReceived.message}</p>
+									<div className="message-container" key={i}>
+										<div className="message-icon-and-corr">
+											<Icon
+												icon={latestReceived.read ? bxMessageCheck : bxMessageDetail}
+												style={
+													latestReceived.read
+														? { color: "#17A744", fontSize: "24px" }
+														: { color: "#00B3D3", fontSize: "24px" }
+												}
+											/>
+											<p className="correspondant">{corr}</p>
+										</div>
+										<div className="message-text-container">
+											<p className="message-text">{latestReceived.message}</p>
 										</div>
 									</div>
 								);
 							})}
 						</div>
-						<Link to="/home">
+						<Link className="splash-content-link" to="/home">
 							<p>View all your messages</p>
 						</Link>
 					</div>
@@ -53,10 +59,7 @@ const Splash = () => {
 						<h4 className="container-inner-title align-mid text-border-bottom">Appointments</h4>
 						<div className="appointments-entries-area">
 							<div className="appointment">
-								<p className="appointment-title">
-									Quarterly check-up |
-									<span className="appointment-location">St. Adams Hospital</span>
-								</p>
+								<p className="appointment-title">Quarterly check-up | St. Adams Hospital</p>
 								<p className="appointment-date">15:th of August at 14:30</p>
 								<p className="appointment-description">
 									this is really just filler text, nothing to see here folks, go on about your daily
@@ -64,10 +67,7 @@ const Splash = () => {
 								</p>
 							</div>
 							<div className="appointment">
-								<p className="appointment-title">
-									Bloodtest results |
-									<span className="appointment-location">St. Adams Hospital</span>
-								</p>
+								<p className="appointment-title">Bloodtest results | St. Adams Hospital</p>
 								<p className="appointment-date">21:th of January at 14:30</p>
 								<p className="appointment-description">
 									this is really just filler text, nothing to see here folks, go on about your daily
@@ -75,24 +75,26 @@ const Splash = () => {
 								</p>
 							</div>
 						</div>
-						<Link to="/home">
+						<Link className="splash-content-link" to="/home">
 							<p>See all your appointments</p>
 						</Link>
 					</div>
 
 					<div className="recommendations splash-content-container">
 						<h4 className="container-inner-title align-mid text-border-bottom">Recommendations</h4>
-						<div className="recommendation">
-							<p>We see that you haven't yet gotten tested for Covid.</p>
-							<Link to="/home">
-								<p>Click here to find your nearest test hub</p>
-							</Link>
-						</div>
-						<div className="recommendation">
-							<p>It has been 287 days since you last dentist appointment.</p>
-							<Link to="/home">
-								<p>Click here to book an appointment</p>
-							</Link>
+						<div className="all-recommendations">
+							<div className="recommendation">
+								<p>We see that you haven't yet gotten tested for Covid.</p>
+								<Link className="inner-splash-content-link" to="/home">
+									<p>Click here to find your nearest test hub</p>
+								</Link>
+							</div>
+							<div className="recommendation">
+								<p>It has been 287 days since you last dentist appointment.</p>
+								<Link className="inner-splash-content-link" to="/home">
+									<p>Click here to book an appointment</p>
+								</Link>
+							</div>
 						</div>
 					</div>
 				</section>
