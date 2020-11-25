@@ -2,8 +2,8 @@ Base Patient Schema:
     id: STRING
     username: STRING
     password: STRING
-    firstname: STRING
-    lastname: STRING
+    firstName: STRING
+    lastName: STRING
     personnummer: STRING
     phonenumber: STRING
     email: STRING
@@ -12,10 +12,36 @@ Base Patient Schema:
         city: STRING
         postalcode: STRING
     }
+    messages: [
+        incoming: {
+            sender1: [
+                {message, date},
+                {message, date}
+            ],
+            sender2: [
+                {message, date},
+                {message, date}
+            ]
+        },
+        outgoing: {
+            recipient1: [
+                {message, date},
+                {message, date}
+            ],
+            recipient2: [
+                {message, date},
+                {message, date}
+            ]
+        }
+    ],
+    messages: [
+        correspondant1: {}
+    ]
+
+
 
     *doctors: (link to other database of employees?)
     *appointments: ARRAY of OBJ
-    *messages: OBJ
     *diagnoses: ARRAY of OBJ
     *prescriptions: ARRAY of OBJ
     *notifications: BOOL

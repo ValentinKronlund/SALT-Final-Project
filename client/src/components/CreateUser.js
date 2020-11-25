@@ -3,9 +3,9 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 
 import Context from "../contexts/Context.js";
 
-import Header from "./Header";
-import Background from "./Background";
-import Footer from "./Footer";
+import Header from "./staticComponents/Header";
+import Background from "./staticComponents/Background";
+import Footer from "./staticComponents/Footer";
 
 const CreateUser = () => {
 	const [FirstName, updateFirstName] = useState("");

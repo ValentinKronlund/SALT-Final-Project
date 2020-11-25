@@ -4,11 +4,14 @@ import Context from "../contexts/Context.js";
 /* import ActivityContext from "../contexts/ACtivityContext.js";*/
 import "../styles/app.css";
 
-import Header from "./Header";
-import Background from "./Background";
-import Footer from "./Footer";
-import Login from "./Login";
+import Background from "./staticComponents/Background";
+import Header from "./staticComponents/Header";
+import Footer from "./staticComponents/Footer";
+
 import CreateUser from "./CreateUser";
+import Splash from "./Splash";
+import Login from "./Login";
+import Chat from "./Chat";
 
 function App() {
 	const [userInfo, setUserInfo] = useState();
@@ -23,15 +26,11 @@ function App() {
 						</Route>
 
 						<Route exact path="/home">
-							{userInfo ? (
-								<>
-									<Header />
-									<Background />
-									<Footer />
-								</>
-							) : (
-								<Redirect to="/login" />
-							)}
+							{userInfo ? <Splash /> : <Redirect to="/login" />}
+						</Route>
+
+						<Route exact path="/home/chat">
+							<Chat />
 						</Route>
 
 						<Route exact path="/login">

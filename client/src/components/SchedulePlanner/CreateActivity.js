@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ActivitiesArray } from "./SchedulePlanner";
+
+const contextArray = useContext(ActivitiesArray);
 
 export default function CreateActivity() {
 	return (

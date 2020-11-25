@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Context from "../contexts/Context.js";
+import Context from "../../contexts/Context.js";
 
 import Header from "./Header";
 import Background from "./Background";

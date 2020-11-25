@@ -3,9 +3,9 @@ import { Link, useHistory } from "react-router-dom";
 import Context from "../contexts/Context.js";
 import axios from "axios";
 
-import Header from "./Header";
-import Background from "./Background";
-import Footer from "./Footer";
+import Header from "./staticComponents/Header";
+import Background from "./staticComponents/Background";
+import Footer from "./staticComponents/Footer";
 
 import "../styles/login.css";
 
