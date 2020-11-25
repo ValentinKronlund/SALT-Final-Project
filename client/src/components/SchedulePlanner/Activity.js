@@ -32,5 +32,3 @@ export default function Activity({ Activity, Description, Time, deleted, updateD
 		</div>
 	);
 }
-
-("");

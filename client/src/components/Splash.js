@@ -50,7 +50,7 @@ const Splash = () => {
 					</div>
 
 					<div className="appointments splash-content-container">
-						<h4>Appointments</h4>
+						<h4 className="container-inner-title align-mid text-border-bottom">Appointments</h4>
 						<div className="appointments-entries-area">
 							<div className="appointment">
 								<p className="appointment-title">
@@ -81,7 +81,7 @@ const Splash = () => {
 					</div>
 
 					<div className="recommendations splash-content-container">
-						<h4>Recommendations</h4>
+						<h4 className="container-inner-title align-mid text-border-bottom">Recommendations</h4>
 						<div className="recommendation">
 							<p>We see that you haven't yet gotten tested for Covid.</p>
 							<Link to="/home">
