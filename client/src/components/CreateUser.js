@@ -133,12 +133,12 @@ const CreateUser = () => {
 					<label for="phone">Phonenumber:</label>
 					<input
 						type="tel"
-						pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+						pattern="[0-9]{10}"
 						min="10"
 						max="10"
 						className="new-user-input"
 						name="phone"
-						placeholder="XXX-XXX-XXXX"
+						placeholder="0701234567"
 						value={Phonenumber}
 						onChange={(e) => updatePhonenumber(e.currentTarget.value)}
 						required

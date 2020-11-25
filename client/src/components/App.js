@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Context from "../contexts/Context.js";
-/* import ActivityContext from "../contexts/ACtivityContext.js";*/
 import "../styles/app.css";
 
 import Background from "./staticComponents/Background";
@@ -30,7 +29,7 @@ function App() {
 						</Route>
 
 						<Route exact path="/home/chat">
-							<Chat />
+							{/* {userInfo ? */} <Chat /> {/* : <Redirect to="/login" />} */}
 						</Route>
 
 						<Route exact path="/login">

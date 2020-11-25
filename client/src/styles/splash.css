@@ -1,0 +1,43 @@
+.splash-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 75vh;
+    width: 100%;
+
+    padding: 1%;
+    overflow: hidden;
+}
+
+.splash-greeting {
+    height: 10%;
+    margin-bottom: .5em;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 4em;
+    font-weight: 200;
+    letter-spacing: .1em;;
+    color: var(--darkest-mint);
+
+    border: 1px solid var(--darkest-blue)
+}
+
+.splash-content-area {
+    display: flex;
+    flex-wrap: wrap;
+
+    height: 90%;
+
+    border: 1px solid var(--main-accent)
+}
+
+.splash-content-container {
+    padding: .5em;
+
+    font-family: 'Poppins', sans-serif;
+
+    background-color: var(--main-white);
+    border: 1px solid var(--main-blue);
+    border-radius: 15px;
+}

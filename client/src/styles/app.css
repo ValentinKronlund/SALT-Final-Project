@@ -23,3 +23,19 @@
     --main-white: #fff;
     --main-black: #161616;
 }
+
+.container-inner-title {
+    width: 95%;
+    margin: .2em auto;
+    padding-bottom: .2em;
+    font-size: 1.8em;
+    letter-spacing: .1em;
+}
+
+.align-mid {
+    text-align: center;
+}
+
+.text-border-bottom {
+    border-bottom: 1px solid var(--main-black);
+}
