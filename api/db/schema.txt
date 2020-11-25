@@ -11,32 +11,13 @@ Base Patient Schema:
         street: STRING
         city: STRING
         postalcode: STRING
-    }
-    messages: [
-        incoming: {
-            sender1: [
-                {message, date},
-                {message, date}
-            ],
-            sender2: [
-                {message, date},
-                {message, date}
-            ]
-        },
-        outgoing: {
-            recipient1: [
-                {message, date},
-                {message, date}
-            ],
-            recipient2: [
-                {message, date},
-                {message, date}
-            ]
+    },
+    messages: {
+        correspondant: {
+            sent: [{timestamp=Date.now(), message=STRING, read=BOOL }],
+            received: [{timestamp, message, read=BOOL}]
         }
-    ],
-    messages: [
-        correspondant1: {}
-    ]
+    }
 
 
 

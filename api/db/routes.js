@@ -59,19 +59,6 @@ router.put("/", async (req, res) => {
 		res.json(`ERROR: ${e}`).status(500).end();
 	}
 
-	/* 	const updatedPerson = {
-		"firstName": req.body.firstName || person.firstName,
-		"lastName": req.body.lastName || person.lastName,
-		"personnummer": req.body.personnummer || person.personnummer,
-		"phonenumber": req.body.phonenumber || person.phonenumber,
-		"email": req.body.email || person.email,
-		"adress": {
-			"street": req.body.adress.street || person.adress.street,
-			"city": req.body.adress.city || person.adress.city,
-			"postalcode": req.body.adress.postalcode || person.adress.postalcode,
-		},
-	}; */
-
 	const data = await rawData.updateOne(
 		{ firstName: req.query.firstName },
 		{
@@ -88,7 +75,55 @@ router.put("/", async (req, res) => {
 					city: req.body.adress.city || person.adress.city,
 					postalcode: req.body.adress.postalcode || person.adress.postalcode,
 				},
+				messages: person.messages,
 			},
+		}
+	);
+
+	res.json(data).status(200).end();
+});
+
+router.put("/messages", async (req, res) => {
+	if (!req.body.recipient || !req.body.message) {
+		console.log("PUT to messages was stopped, missing data in request");
+
+		res.json("ERROR: Missing data in request").status(400).end();
+	}
+
+	const rawData = await mongo.db();
+
+	const person = await queries.getPerson(rawData, req.body.recipient);
+
+	console.log(
+		"\n----Sending message----\n",
+		`User: ${req.body.from}\n`,
+		`Sent: "${req.body.message}" \n`,
+		`To: ${req.body.recipient}\n`
+	);
+
+	const from = req.body.from;
+	const message = req.body.message;
+	const recipient = req.body.recipient;
+
+	const newMessage = {};
+	newMessage[sent] = { timestamp: Date.now(), message: req.body.message, read: false };
+
+	/* 	...person,
+	messages: {
+		...person.messages,
+		$$correspondant: {
+			sent: {
+				timestamp: Date.now(),
+				message: req.body.message,
+				read: false,
+			},
+		},
+	}, */
+
+	const data = await rawData.updateOne(
+		{ firstName: req.body.recipient },
+		{
+			$set: {},
 		}
 	);
 
@@ -111,6 +146,36 @@ router.post("/", async (req, res) => {
 			"street": req.body.adress.street,
 			"city": req.body.adress.city,
 			"postalcode": req.body.adress.postalcode,
+		},
+		"messages": {
+			"tester": {
+				"sent": [
+					{
+						"timestamp": Date.now(),
+						"message":
+							"Stop the vote! Mail-in voting is fraudulent. This is going to be a fraud like you’ve never seen",
+						"read": false,
+					},
+					{
+						"timestamp": Date.now(),
+						"message": "Despite the constant negative press covfefe",
+						"read": true,
+					},
+				],
+				"received": [
+					{
+						"timestamp": Date.now(),
+						"message":
+							"Stop the vote! Mail-in voting is fraudulent. This is going to be a fraud like you’ve never seen",
+						"read": false,
+					},
+					{
+						"timestamp": Date.now(),
+						"message": "Despite the constant negative press covfefe",
+						"read": true,
+					},
+				],
+			},
 		},
 	};
 	try {
