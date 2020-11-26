@@ -1,14 +1,49 @@
 .header {
-    height: 12vh;
+    height: 10vh;
     background-color: var(--darkest-mint);
+
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .header-link {
+    height: 100%;
+
     display: flex;
-    flex-direction: row;
-    align-items: baseline;
     justify-content: center;
     text-decoration: none;
+}
+
+.header-logo {
+    display: flex;
+    flex-grow: 2;
+    text-decoration: none;
+    justify-content: center;
+}
+
+.header-nav-element{
+    width: 0;
+    
+    color: #E7F5E7;
+
+    font-weight: 500;
+    align-items: center;
+    font-size: 2.8em;
+    flex-grow: 1;
+}
+
+.header-nav-left {
+    border-right: solid 3px #148a39;
+}
+
+.header-nav-right {
+    border-left: solid 3px #148a39;
+}
+
+.header-nav-element:hover {
+    background-color: #b3d6b3;
 }
 
 .header-title {
