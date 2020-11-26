@@ -48,15 +48,31 @@
 .inbox {
     grid-column: 1/4;
 }
+
 .appointments {
     grid-column: 4/10;
 }
+
 .recommendations {
     grid-column: 1/5;
     grid-row-start: 2;
 
     display: grid;
     grid-template-rows: 15% auto;
+}
+
+.schedule {
+    grid-column: 5/10;
+    grid-row-start: 2;
+
+    display: grid;
+    grid-template-rows: 15% auto;
+}
+
+.schedule-title {
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    font-weight: 700;
 }
 
 .inbox-message-area,

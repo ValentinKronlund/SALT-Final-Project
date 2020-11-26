@@ -3,6 +3,11 @@ const getPerson = async (data, query) => {
 	return person;
 };
 
+const getUser = async (data, query) => {
+	const person = await data.find({ username: query }).toArray();
+	return person;
+};
+
 // (hopefully) Omits the password from the response
 const getPersonNoPsw = async (data, query) => {
 	const person = await data.find({ firstName: query }, { "_id": 0, "password": 0 }).toArray();
@@ -21,6 +26,7 @@ const getAll = async (data) => {
 
 module.exports = {
 	getPerson,
+	getUser,
 	getGroupReviews,
 	getAll,
 };

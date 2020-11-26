@@ -37,3 +37,12 @@
 .header-logout {
     text-align: end;
 }
+
+@media (max-width:500px) {
+    .header-title{
+        color: red;
+        font-size: 4em;
+        margin: 0 25px;
+        align-items: center;
+    }
+}

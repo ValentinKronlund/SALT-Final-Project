@@ -35,6 +35,13 @@
     font-size: 1.8em;
     color: var(--lightest-mint);
     text-decoration: none;
+    transition: all .2s ease-in-out;
+    border-bottom: 1px solid transparent;
+}
+
+.author:hover {
+    letter-spacing: 0.11em;
+    border-bottom: 1px solid var(--lightest-mint);
 }
 
 .author-paragraph {

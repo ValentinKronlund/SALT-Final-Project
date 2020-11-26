@@ -1,20 +1,29 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
 import "../styles/splash.css";
 import Context from "../contexts/Context.js";
 
-import Header from "./staticComponents/Header";
 import Background from "./staticComponents/Background";
+import Header from "./staticComponents/Header";
 import Footer from "./staticComponents/Footer";
 
-import { Icon, InlineIcon } from "@iconify/react";
+import SchedulePreview from "./schedulePlanner/SchedulePreview";
+
 import bxMessageDetail from "@iconify/icons-bx/bx-message-detail";
 import bxMessageCheck from "@iconify/icons-bx/bx-message-check";
+import { Icon, InlineIcon } from "@iconify/react";
 
 const Splash = () => {
+	const history = useHistory();
+
 	const userInfo = useContext(Context).userInfo;
 	const usersMessages = userInfo.messages;
 	const correspondants = Object.getOwnPropertyNames(usersMessages);
+
+	const redirectToSchedule = () => {
+		history.push("/schedule-planner");
+	};
 
 	return (
 		<>
@@ -50,7 +59,7 @@ const Splash = () => {
 								);
 							})}
 						</div>
-						<Link className="splash-content-link" to="/home">
+						<Link className="splash-content-link" to="/chat">
 							<p>View all your messages</p>
 						</Link>
 					</div>
@@ -97,6 +106,7 @@ const Splash = () => {
 							</div>
 						</div>
 					</div>
+					<SchedulePreview />
 				</section>
 			</main>
 			<Footer />

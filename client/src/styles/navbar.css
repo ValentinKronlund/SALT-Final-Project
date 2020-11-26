@@ -1,0 +1,26 @@
+.navbar {
+  background-color: #E7F5E7;
+;
+}
+.navbar-link {
+  padding: 10px;
+
+  color: #21E15D;
+  float: right;
+  display: inline;
+
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 500;
+
+  border-right: solid 1.5px #17A744;
+
+}
+.navbar-link:hover {
+  background-color: #b3d6b3;
+}
+
+.navbar-link-container {
+  display: flex;
+}

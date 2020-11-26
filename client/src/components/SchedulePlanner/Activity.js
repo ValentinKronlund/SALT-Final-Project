@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
 import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
 
+//import "../../styles/activity.css";
+import "../../styles/schedulePlanner.css";
+
 export default function Activity({ Activity, Description, Time, deleted, updateDeleted }) {
 	const ActivitiesArray = useContext(ActivitiesContext);
 	const updateActivitiesArray = useContext(UpdateAtivitiesContext);
@@ -23,7 +26,7 @@ export default function Activity({ Activity, Description, Time, deleted, updateD
 	};
 
 	return (
-		<div>
+		<div className="activity">
 			<p>{Activity}</p>
 			<p>{Description}</p>
 			<p>{Time}</p>

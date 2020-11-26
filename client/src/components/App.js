@@ -19,13 +19,7 @@ export const UpdateAtivitiesContext = React.createContext();
 
 function App() {
 	const [userInfo, setUserInfo] = useState();
-	const [ActivitiesArray, updateActivitiesArray] = useState([
-		{
-			Activity: "Eat",
-			Description: "Please work",
-			Time: "Now",
-		},
-	]);
+	const [ActivitiesArray, updateActivitiesArray] = useState([]);
 
 	return (
 		<BrowserRouter>
@@ -36,12 +30,12 @@ function App() {
 							{userInfo ? <Redirect to="/home" /> : <Redirect to="/login" />}
 						</Route>
 
-						<Route exact path="/home">
+						{/* 	<Route exact path="/home">
 							{userInfo ? <Splash /> : <Redirect to="/login" />}
-						</Route>
+						</Route> */}
 
-						<Route exact path="/home/chat">
-							{/* {userInfo ? */} <Chat /> {/* : <Redirect to="/login" />} */}
+						<Route exact path="/chat">
+							{userInfo ? <Chat /> : <Redirect to="/login" />}
 						</Route>
 
 						<Route exact path="/login">
@@ -55,7 +49,11 @@ function App() {
 						<ActivitiesContext.Provider value={ActivitiesArray}>
 							<UpdateAtivitiesContext.Provider value={updateActivitiesArray}>
 								<Route exact path="/schedule-planner">
-									<SchedulePlanner />
+									{userInfo ? <SchedulePlanner /> : <Redirect to="/login" />}
+								</Route>
+
+								<Route exact path="/home">
+									{userInfo ? <Splash /> : <Redirect to="/login" />}
 								</Route>
 
 								<Route exact path="/create-activity">

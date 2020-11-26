@@ -1,0 +1,29 @@
+.schedule-title {
+    /*font-size: 1.2em;*/    
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+}
+
+.activityPreview {
+    display: flex;
+
+    margin: 1em auto;
+    padding: 0.5em;
+
+    background-color: var(--main-white);
+    border: 1px solid var(--dark-blue);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4em;
+
+    flex-direction: column;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.all-schedules{
+    width: 90%;
+    margin: 1em auto;
+    overflow-y: auto;
+}

@@ -53,29 +53,32 @@ router.get('/:id', async (req, res) => {
 router.put("/", async (req, res) => {
 	const rawData = await mongo.db();
 
+	let person;
 	try {
-		const person = await queries.getPerson(rawData, req.query.firstName);
+		person = await queries.getPerson(rawData, req.query.firstName);
 	} catch (e) {
 		res.json(`ERROR: ${e}`).status(500).end();
 	}
+	console.log(person, ".......Person.......");
 
 	const data = await rawData.updateOne(
 		{ firstName: req.query.firstName },
 		{
 			$set: {
-				username: req.body.username || person.username,
-				password: req.body.password || person.password,
-				firstName: req.body.firstName || person.firstName,
-				lastName: req.body.lastName || person.lastName,
-				personnummer: req.body.personnummer || person.personnummer,
-				phonenumber: req.body.phonenumber || person.phonenumber,
-				email: req.body.email || person.email,
-				adress: {
-					street: req.body.adress.street || person.adress.street,
-					city: req.body.adress.city || person.adress.city,
-					postalcode: req.body.adress.postalcode || person.adress.postalcode,
+				username: req.body.username || person[0].username,
+				password: req.body.password || person[0].password,
+				firstName: req.body.firstName || person[0].firstName,
+				lastName: req.body.lastName || person[0].lastName,
+				personnummer: req.body.personnummer || person[0].personnummer,
+				phonenumber: req.body.phonenumber || person[0].phonenumber,
+				email: req.body.email || person[0].email,
+				address: {
+					street: req.body.street || person[0].address.street,
+					city: req.body.city || person[0].address.city,
+					postalcode: req.body.postalcode || person[0].address.postalcode,
 				},
-				messages: person.messages,
+				//messages: person.messages || person.address.messages,
+				schedule: req.body.schedule || person[0].schedule,
 			},
 		}
 	);
@@ -84,50 +87,71 @@ router.put("/", async (req, res) => {
 });
 
 router.put("/messages", async (req, res) => {
-	if (!req.body.recipient || !req.body.message) {
+	if (!req.body) {
 		console.log("PUT to messages was stopped, missing data in request");
-
 		res.json("ERROR: Missing data in request").status(400).end();
+	} else if (req.body.from === req.body.to) {
+		console.log("You cannot send messages to yourself!");
+		res.json("ERROR: Cannot send message to yourself").status(400).end();
 	}
 
 	const rawData = await mongo.db();
 
-	const person = await queries.getPerson(rawData, req.body.recipient);
+	const sender = await queries.getUser(rawData, req.body.from);
+	const senderName = sender[0].username;
 
-	console.log(
-		"\n----Sending message----\n",
-		`User: ${req.body.from}\n`,
-		`Sent: "${req.body.message}" \n`,
-		`To: ${req.body.recipient}\n`
-	);
+	const recipient = await queries.getUser(rawData, req.body.to);
+	const recipientName = recipient[0].username;
 
-	const from = req.body.from;
-	const message = req.body.message;
-	const recipient = req.body.recipient;
-
-	const newMessage = {};
-	newMessage[sent] = { timestamp: Date.now(), message: req.body.message, read: false };
-
-	/* 	...person,
-	messages: {
-		...person.messages,
-		$$correspondant: {
-			sent: {
-				timestamp: Date.now(),
-				message: req.body.message,
-				read: false,
-			},
+	const senderNewMessages = {
+		...sender[0].messages,
+		[recipientName]: {
+			sent: [
+				{
+					timestamp: req.body.messageObj.timestamp,
+					message: req.body.messageObj.message,
+					read: false,
+				},
+				...(sender[0].messages === undefined ? [] : sender[0].messages[recipientName].sent),
+			],
+			received: [
+				...(sender[0].messages === undefined ? [] : sender[0].messages[recipientName].received),
+			],
 		},
-	}, */
+	};
 
-	const data = await rawData.updateOne(
-		{ firstName: req.body.recipient },
-		{
-			$set: {},
-		}
+	// console.log(senderNewMessages);
+
+	const recipientNewMessages = {
+		...recipient[0].messages,
+		[senderName]: {
+			sent: [
+				...(recipient[0].messages === undefined ? [] : recipient[0].messages[senderName].sent),
+			],
+			received: [
+				{
+					timestamp: req.body.messageObj.timestamp,
+					message: req.body.messageObj.message,
+					read: false,
+				},
+				...(recipient[0].messages === undefined ? [] : recipient[0].messages[senderName].received),
+			],
+		},
+	};
+
+	const updateSender = await rawData.updateOne(
+		{ username: senderName },
+		{ $set: { messages: senderNewMessages } }
 	);
 
-	res.json(data).status(200).end();
+	const updateRecipient = await rawData.updateOne(
+		{ username: recipientName },
+		{ $set: { messages: recipientNewMessages } }
+	);
+
+	const updates = [updateSender, updateRecipient];
+
+	res.json(updates).status(200).end();
 });
 
 router.post("/", async (req, res) => {
@@ -142,10 +166,10 @@ router.post("/", async (req, res) => {
 		"personnummer": req.body.personnummer,
 		"phonenumber": req.body.phonenumber,
 		"email": req.body.email,
-		"adress": {
-			"street": req.body.adress.street,
-			"city": req.body.adress.city,
-			"postalcode": req.body.adress.postalcode,
+		"address": {
+			"street": req.body.address.street,
+			"city": req.body.address.city,
+			"postalcode": req.body.address.postalcode,
 		},
 		"messages": {
 			"tester": {
@@ -177,6 +201,13 @@ router.post("/", async (req, res) => {
 				],
 			},
 		},
+		"schedule": [
+			{
+				Activity: "Eat",
+				Description: "Yummy",
+				Time: "Now",
+			},
+		],
 	};
 	try {
 		data = await rawData.insertOne(person);
