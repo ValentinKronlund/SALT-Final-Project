@@ -32,8 +32,9 @@ export default function SchedulePreview() {
 				/>
 			); */
 
-			return ActivitiesArray.map((act) => (
+			return ActivitiesArray.map((act, i) => (
 				<PreviewActivity
+					key={i}
 					Activity={act.Activity}
 					Description={act.Description}
 					Time={act.Time}

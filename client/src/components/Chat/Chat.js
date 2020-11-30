@@ -1,6 +1,8 @@
-import React, { useState, useContext } from "react";
-import Context from "../../contexts/UserContext.js";
+import React, { useState, useEffect, useContext } from "react";
+import UserContext from "../../contexts/UserContext.js";
+import updateUser from "../../hooks/updateUser";
 import axios from "axios";
+import moment from "moment";
 
 import Background from "../static/Background";
 import Header from "../static/Header";
@@ -10,82 +12,100 @@ import Sidebar from "./Sidebar";
 import "./chat.css";
 
 const Chat = () => {
-	const userInfo = useContext(Context).userInfo;
+	const userInfo = useContext(UserContext).userInfo;
+	const setUserInfo = useContext(UserContext).setUserInfo;
 
 	const [chatOpened, setChatOpened] = useState(false);
 	const [newConversation, setNewConversation] = useState(false);
-	const [currentConversation, serCurrentConversation] = useState();
+	const [currentConversation, setCurrentConversation] = useState();
 	const [message, setMessage] = useState("");
-	const [recipient, setRecipient] = useState("");
+	const [recipientId, setrecipientId] = useState("");
+	const [recipientUsername, setrecipientUsername] = useState("");
 
-	const sendMessage = (e) => {
+	const sendMessage = async (e) => {
 		e.preventDefault();
 		console.log("--- Sending message ---");
 
 		const newMessage = {
+			fromId: userInfo._id,
 			from: userInfo.username,
-			to: recipient,
+			to: recipientUsername,
 			messageObj: {
-				timestamp: Date.now(),
+				timestamp: moment(),
 				message,
 			},
 		};
 
-		axios
+		await axios
 			.put("http://localhost:1337/api/mongoDB/messages", newMessage)
 			.then((res) => console.log(res))
 			.catch((err) => console.log(err, "<-- Error while sending message"));
 
 		setMessage("");
+		const fetchedUser = await updateUser();
+		setUserInfo(fetchedUser);
 	};
 
-	const generateConversations = (userMessages) => {
-		const correspondants = Object.keys(userMessages);
-		const messageObject = Object.values(userMessages);
-		const conversations = [];
+	useEffect(() => {
+		let messages;
+		if (userInfo.messages) {
+			messages = userInfo.messages[recipientId];
+		}
+		setCurrentConversation(messages);
+	}, [recipientId]);
 
-		correspondants.forEach((corr, index) => {
-			const latestReceived = messageObject[index].received[0];
-			conversations.push(
-				<div
-					onClick={() => {
-						setChatOpened(true);
-						setRecipient(corr);
-						serCurrentConversation(messageObject[index]);
-					}}
-					key={corr}
-					className={
-						latestReceived
-							? latestReceived.read
-								? "conversation read"
-								: "conversation"
-							: "conversation"
-					}>
-					<p className="corr-name">{corr}</p>
-					<p className="msg-time">{latestReceived ? latestReceived.timestamp : null}</p>
-					<p className="msg-preview">{latestReceived ? latestReceived.message : null}</p>
-				</div>
-			);
-		});
-
-		return conversations;
-	};
+	useEffect(() => {}, [userInfo]);
 
 	const generateFeed = () => {
-		const allSent = currentConversation.sent;
-		const allReceived = currentConversation.received;
-		const allMessagesSorted = allSent.concat(allReceived).sort((a, b) => a.timestamp - b.timestamp);
+		let allMessagesSorted = [];
+		if (currentConversation != null) {
+			allMessagesSorted = currentConversation.messages.sort((a, b) => a.timestamp - b.timestamp);
+		}
 		return allMessagesSorted;
 	};
 
 	const generateChat = () => {
+		const chatHeader = () => {
+			if (newConversation) {
+				return (
+					<form
+						onSubmit={(e) => {
+							e.preventDefault();
+							setNewConversation(false);
+						}}>
+						<input
+							type="text"
+							placeholder="Type username you would like to contact"
+							value={recipientUsername}
+							onChange={(e) => setrecipientUsername(e.currentTarget.value)}
+							required
+						/>
+					</form>
+				);
+			} else {
+				return (
+					<p className="container-inner-title align-mid text-border-bottom">
+						{userInfo.messages[recipientId]
+							? userInfo.messages[recipientId].firstName
+							: recipientUsername}
+					</p>
+				);
+			}
+		};
+
 		return (
-			<div>
-				<p className="container-inner-title align-mid text-border-bottom">{recipient}</p>
+			<>
+				{chatHeader()}
 				<div className="chat-feed">
 					{generateFeed().map((message, i) => (
-						<div key={i} className="message">
-							{message.message}
+						<div
+							key={i}
+							className={
+								message.fromId === message.toId ? "msg-container sent" : "msg-container received"
+							}>
+							<p className="message-from">{message.from}</p>
+							<p className="message-time">{moment(message.timestamp).format("MMM Do, hh:mm a")}</p>
+							<p className="message">{message.message}</p>
 						</div>
 					))}
 				</div>
@@ -101,7 +121,7 @@ const Chat = () => {
 						Send
 					</button>
 				</form>
-			</div>
+			</>
 		);
 	};
 
@@ -111,11 +131,13 @@ const Chat = () => {
 			<Background />
 			<main className="chat-main-container">
 				<Sidebar
-					generateConversations={generateConversations}
 					setChatOpened={setChatOpened}
 					setNewConversation={setNewConversation}
+					setrecipientId={setrecipientId}
+					setCurrentConversation={setCurrentConversation}
+					setrecipientUsername={setrecipientUsername}
 				/>
-				<section className="chat">{generateChat()}</section>
+				{chatOpened ? <section className="chat">{generateChat()}</section> : null}
 			</main>
 			<Footer />
 		</>
