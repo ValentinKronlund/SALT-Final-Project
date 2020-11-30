@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
-import Context from "../../contexts/Context";
+import Context from "../../contexts/UserContext";
 import { useHistory } from "react-router-dom";
 
 import Header from "../static/Header";

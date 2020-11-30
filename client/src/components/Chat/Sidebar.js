@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Context from "../../contexts/Context.js";
+import Context from "../../contexts/UserContext.js";
 import { Icon } from "@iconify/react";
 import bxMessageAdd from "@iconify/icons-bx/bx-message-add";
 

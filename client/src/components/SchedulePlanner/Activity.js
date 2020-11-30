@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
-import Context from "../../contexts/Context";
+import Context from "../../contexts/UserContext";
 
 //import "../../styles/activity.css";
 import "../../styles/schedulePlanner.css";

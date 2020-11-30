@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import Context from "../../contexts/Context";
+import Context from "../../contexts/UserContext";
 import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
 
 import Activity from "./Activity";

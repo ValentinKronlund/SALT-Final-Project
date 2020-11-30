@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import "./splash.css";
-import Context from "../../contexts/Context.js";
+import Context from "../../contexts/UserContext.js";
 
 import Background from "../static/Background";
 import Header from "../static/Header";

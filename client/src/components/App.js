@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import Context from "../contexts/Context.js";
+import Context from "../contexts/UserContext.js";
 import "../styles/app.css";
 
 import CreateUser from "./CreateUser/CreateUser";
