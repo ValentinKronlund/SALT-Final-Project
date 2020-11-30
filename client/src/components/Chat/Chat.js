@@ -52,9 +52,7 @@ const Chat = () => {
 			messages = userInfo.messages[recipientId];
 		}
 		setCurrentConversation(messages);
-	}, [recipientId]);
-
-	useEffect(() => {}, [userInfo]);
+	}, [recipientId, userInfo]);
 
 	const generateFeed = () => {
 		let allMessagesSorted = [];
@@ -134,7 +132,6 @@ const Chat = () => {
 					setChatOpened={setChatOpened}
 					setNewConversation={setNewConversation}
 					setrecipientId={setrecipientId}
-					setCurrentConversation={setCurrentConversation}
 					setrecipientUsername={setrecipientUsername}
 				/>
 				{chatOpened ? <section className="chat">{generateChat()}</section> : null}

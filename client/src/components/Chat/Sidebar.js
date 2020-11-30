@@ -13,21 +13,21 @@ export default function Sidebar({
 	const userInfo = useContext(Context).userInfo;
 
 	const generateContacts = () => {
-		const contacts = Object.keys(userInfo.messages);
+		const contactIds = Object.keys(userInfo.messages);
 		const contactList = [];
 
-		contacts.forEach((contact, index) => {
-			const correlatedMessages = userInfo.messages[contact].messages;
+		contactIds.forEach((contactId, index) => {
+			const correlatedMessages = userInfo.messages[contactId].messages;
 			contactList.push(
 				<div
 					onClick={() => {
 						setChatOpened(true);
-						setrecipientId(contact);
-						setrecipientUsername(userInfo.messages[contact].username);
+						setrecipientId(contactId);
+						setrecipientUsername(userInfo.messages[contactId].username);
 					}}
-					key={contact}
+					key={contactId}
 					className="conversation">
-					<p className="contact-name">{`${userInfo.messages[contact].firstName} ${userInfo.messages[contact].lastName}`}</p>
+					<p className="contact-name">{`${userInfo.messages[contactId].firstName} ${userInfo.messages[contactId].lastName}`}</p>
 					<p className="msg-time">
 						{correlatedMessages
 							? moment(correlatedMessages[0].timestamp).format("MMM Do, hh:mm a")
