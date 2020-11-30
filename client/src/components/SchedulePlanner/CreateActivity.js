@@ -1,95 +1,82 @@
-import React, { useState, useContext } from "react";
-import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
-import Context from "../../contexts/Context";
-import { useHistory } from "react-router-dom";
+import React, { useState, useContext } from 'react';
+import { ActivitiesContext, UpdateAtivitiesContext } from '../App';
+import Context from '../../contexts/Context';
 
-import Header from "../static/Header";
-import Background from "../static/Background";
-import Footer from "../static/Footer";
+import '../../styles/createActivity.css';
 
-import "../../styles/createActivity.css";
+export default function CreateActivity({ toggleIsHidden }) {
+  const updateActivitiesArray = useContext(UpdateAtivitiesContext);
+  const ActivitiesArray = useContext(ActivitiesContext);
+  const user = useContext(Context);
 
-export default function CreateActivity() {
-	const ActivitiesArray = useContext(ActivitiesContext);
-	const updateActivitiesArray = useContext(UpdateAtivitiesContext);
-	const user = useContext(Context);
+  const [Description, updateDescription] = useState('');
+  const [Activity, updateActivity] = useState('');
+  const [Time, updateTime] = useState('');
 
-	const history = useHistory();
+  const addActivity = () => {
+    const fetchUrl = `http://localhost:1337/api/mongoDB/?firstName=${user.userInfo.firstName}`;
+    const newArray = ActivitiesArray;
 
-	const [Activity, updateActivity] = useState("");
-	const [Description, updateDescription] = useState("");
-	const [Time, updateTime] = useState("");
+    const newActivity = {
+      Activity: Activity,
+      Description: Description,
+      Time: Time,
+    };
 
-	const goBack = () => {
-		history.push("/schedule-planner");
-	};
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ schedule: newArray }),
+    };
 
-	const addActivity = () => {
-		const newActivity = {
-			Activity: Activity,
-			Description: Description,
-			Time: Time,
-		};
+    newArray.push(newActivity);
+    updateActivitiesArray(newArray);
 
-		console.log("--- ActivitiesArray ---\n", ActivitiesArray);
-		const newArray = ActivitiesArray;
-		console.log("--- newArray ---\n", newArray);
-		console.log("--- This is being pushed onto newArray ---\n", newActivity);
-		newArray.push(newActivity);
-		console.log("--- newArray after push ---\n", newArray);
-		updateActivitiesArray(newArray);
-		//	history.push("/schedule-planner");
+		fetch(fetchUrl, requestOptions);
+		toggleIsHidden(false);
+  };
 
-		const requestOptions = {
-			method: "PUT",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ schedule: newArray }),
-		};
-		fetch(`http://localhost:1337/api/mongoDB/?firstName=${user.userInfo.firstName}`, requestOptions)
-			.then((response) => console.log("---- Response.json() ----\n", response.json()))
-			.then(history.push("/schedule-planner"));
-	};
-
-	return (
-		<>
-			<Header />
-			<Background />
-			<div className="creation-body">
-				<input
-					type="text"
-					className="input-field"
-					name="activity"
-					placeholder="Activity"
-					value={Activity}
-					onChange={(e) => updateActivity(e.currentTarget.value)}
-					required
-				/>
-				<input
-					type="text"
-					className="input-field"
-					name="description"
-					placeholder="Description"
-					value={Description}
-					onChange={(e) => updateDescription(e.currentTarget.value)}
-					required
-				/>
-				<input
-					type="text"
-					className="input-field"
-					name="time"
-					placeholder="Time"
-					value={Time}
-					onChange={(e) => updateTime(e.currentTarget.value)}
-					required
-				/>
-				<button className="" onClick={addActivity} type="submit">
-					Add Activity
-				</button>
-				<button className="add-activity-back" onClick={goBack} type="submit">
-					Back
-				</button>
-			</div>
-			<Footer />
-		</>
-	);
+  return (
+    <>
+      <input
+        type="text"
+        className="input-field"
+        name="activity"
+        placeholder="Add an activity"
+        value={Activity}
+        autoComplete="off"
+        onChange={(e) => updateActivity(e.currentTarget.value)}
+        required
+      />
+      <hr className="top-input-underline"></hr>
+      <input
+        type="text"
+        className="input-field"
+        name="description"
+        placeholder="Add a description"
+        value={Description}
+        autoComplete="off"
+        onChange={(e) => updateDescription(e.currentTarget.value)}
+        required
+      />
+      <br></br>
+      <input
+        type="time"
+        className="input-field"
+        name="time"
+        placeholder="Time"
+        value={Time}
+        onChange={(e) => updateTime(e.currentTarget.value)}
+        required
+      />
+      <br></br>
+      <button
+        className="add-window-button add-act"
+        onClick={addActivity}
+        type="submit"
+      >
+        <p>Add Activity</p>
+      </button>
+    </>
+  );
 }
