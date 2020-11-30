@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import Context from "../contexts/Context.js";
+import Context from "../../contexts/Context.js";
 import axios from "axios";
 
-import Header from "./staticComponents/Header";
-import Background from "./staticComponents/Background";
-import Footer from "./staticComponents/Footer";
+import Header from "../static/Header";
+import Background from "../static/Background";
+import Footer from "../static/Footer";
 
-import "../styles/login.css";
+import "./login.css";
 
 const Login = () => {
 	const setUserInfo = useContext(Context).setUserInfo;

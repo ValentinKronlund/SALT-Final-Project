@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Context from "../../contexts/Context";
 
-import logo from "../../images/logo-light.png";
-import "../../styles/header.css";
+import logo from "./images/logo-light.png";
+import "./styles/header.css";
 
 const Header = () => {
 	const userInfo = useContext(Context).userInfo;

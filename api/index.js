@@ -5,7 +5,6 @@ const app = express();
 const port = 1337;
 
 app.use(cors());
-
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -14,4 +13,12 @@ app.get("/", (req, res) => {
 
 app.use("/api/mongoDB", mongoDB);
 
-app.listen(port, () => console.log(`Running server on port ${port}`));
+const server = require("http").createServer(app);
+const io = require("socket.io")(server);
+io.on("connection", (socket) => {
+	socket.on("message", ({ from, to, message }) => {
+		io.emit("message", { from, to, message });
+	});
+});
+
+server.listen(port, () => console.log(`Running app server on port ${port}`));

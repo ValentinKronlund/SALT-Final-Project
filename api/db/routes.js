@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const mongo = require("./mongo");
 const queries = require("./queries");
+const { v4: uuidv4 } = require("uuid");
 
 router.get("/", async (req, res) => {
 	const rawData = await mongo.db();
@@ -24,30 +25,6 @@ router.get("/", async (req, res) => {
 	} else {
 		res.json(data).status(200).end();
 	}
-
-	/*   const rawData = await mongo.db();
-  let data;
-
-  if (req.query.productId) { data = await queries.getProductId(rawData, req.query.productId); }
-  else if (req.query.group) { data = await queries.getGroupReviews(rawData, req.query.group); }
-  else { data = await queries.getAll(rawData); }
-
-  res
-  .json(data)
-  .status(200)
-  .end();
-});
-
-router.get('/:id', async (req, res) => {
-  const id = req.params.id;
-  
-  const rawData = await mongo.db();
-  const data = await rawData.findOne({ id });
-
-  res
-    .json(data)
-    .status(200)
-    .end(); */
 });
 
 router.put("/", async (req, res) => {
@@ -211,6 +188,7 @@ router.post("/", async (req, res) => {
 	let data;
 
 	const person = {
+		"id": uuidv4(),
 		"username": req.body.username,
 		"password": req.body.password,
 		"firstName": req.body.firstName,

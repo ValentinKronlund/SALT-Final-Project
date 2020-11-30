@@ -3,9 +3,9 @@ import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
 import Context from "../../contexts/Context";
 import { useHistory } from "react-router-dom";
 
-import Header from "../staticComponents/Header";
-import Background from "../staticComponents/Background";
-import Footer from "../staticComponents/Footer";
+import Header from "../static/Header";
+import Background from "../static/Background";
+import Footer from "../static/Footer";
 
 import "../../styles/createActivity.css";
 

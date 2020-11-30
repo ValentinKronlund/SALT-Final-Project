@@ -3,22 +3,19 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Context from "../contexts/Context.js";
 import "../styles/app.css";
 
-import Background from "./staticComponents/Background";
-import Header from "./staticComponents/Header";
-import Footer from "./staticComponents/Footer";
-
-import CreateUser from "./CreateUser";
-import Splash from "./Splash";
-import Login from "./Login";
-import Chat from "./Chat";
+import CreateUser from "./CreateUser/CreateUser";
+import Splash from "./Splash/Splash";
+import Login from "./Login/Login";
+import Chat from "./Chat/Chat";
 import SchedulePlanner from "./schedulePlanner/SchedulePlanner";
 import CreateActivity from "./schedulePlanner/CreateActivity";
+import useLocalStorage from "../hooks/useLocalStorage.js";
 
 export const ActivitiesContext = React.createContext();
 export const UpdateAtivitiesContext = React.createContext();
 
 function App() {
-	const [userInfo, setUserInfo] = useState();
+	const [userInfo, setUserInfo] = useLocalStorage("user");
 	const [ActivitiesArray, updateActivitiesArray] = useState([]);
 
 	return (
@@ -39,7 +36,7 @@ function App() {
 						</Route>
 
 						<Route exact path="/login">
-							<Login />
+							{userInfo ? <Redirect to="/home" /> : <Login />}
 						</Route>
 
 						<Route exact path="/create-user">

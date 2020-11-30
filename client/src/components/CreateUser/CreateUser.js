@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
-import Context from "../contexts/Context.js";
-import "../styles/createUser.css";
+import Context from "../../contexts/Context";
+import "./createUser.css";
 
-import Header from "./staticComponents/Header";
-import Background from "./staticComponents/Background";
-import Footer from "./staticComponents/Footer";
+import Header from "../static/Header";
+import Background from "../static/Background";
+import Footer from "../static/Footer";
 
 const CreateUser = () => {
 	const [FirstName, updateFirstName] = useState("");

@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import "../styles/splash.css";
-import Context from "../contexts/Context.js";
+import "./splash.css";
+import Context from "../../contexts/Context.js";
 
-import Background from "./staticComponents/Background";
-import Header from "./staticComponents/Header";
-import Footer from "./staticComponents/Footer";
+import Background from "../static/Background";
+import Header from "../static/Header";
+import Footer from "../static/Footer";
 
-import SchedulePreview from "./schedulePlanner/SchedulePreview";
+import SchedulePreview from "../schedulePlanner/SchedulePreview";
 
 import bxMessageDetail from "@iconify/icons-bx/bx-message-detail";
 import bxMessageCheck from "@iconify/icons-bx/bx-message-check";

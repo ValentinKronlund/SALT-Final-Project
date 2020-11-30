@@ -4,9 +4,9 @@ import Context from "../../contexts/Context";
 import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
 import { v4 as uuid } from "uuid";
 
-import Header from "../staticComponents/Header";
-import Background from "../staticComponents/Background";
-import Footer from "../staticComponents/Footer";
+import Header from "../static/Header";
+import Background from "../static/Background";
+import Footer from "../static/Footer";
 
 import "../../styles/schedulePlanner.css";
 

@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
-import Context from "../contexts/Context.js";
+import Context from "../../contexts/Context.js";
 import axios from "axios";
 
-import Background from "./staticComponents/Background";
-import Header from "./staticComponents/Header";
-import Footer from "./staticComponents/Footer";
+import Background from "../static/Background";
+import Header from "../static/Header";
+import Footer from "../static/Footer";
+import Sidebar from "./Sidebar";
 
-import "../styles/chat.css";
+import "./chat.css";
 import { Icon } from "@iconify/react";
 import bxMessageAdd from "@iconify/icons-bx/bx-message-add";
 
