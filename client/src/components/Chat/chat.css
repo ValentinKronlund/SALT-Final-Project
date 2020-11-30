@@ -43,7 +43,7 @@
     overflow: hidden;
 }
 
-.corr-name {
+.contact-name {
     grid-column: 1;
     grid-row: 1;
     align-self: baseline;
@@ -86,19 +86,20 @@
 .chat {
     display: grid;
     grid-template-rows: 7.5% auto 15%;
-
     height: 100%;
 
     border: 2px solid var(--dark-blue);
     border-radius: 1.5em;
     background-color: var(--main-white);
-}
 
-.chat-feed {
     overflow-y: auto;
 }
 
-.message {
+.chat-feed {
+    overflow-y: scroll;
+}
+
+.msg-container {
     display: block;
     min-height: 4em;
     width: 45%;
@@ -143,4 +144,12 @@
     border: none;
     border-radius: 1em;
     background-color: var(--darkest-mint);
+}
+
+.sent {
+    background-color: var(--lightest-blue);
+}
+
+.received {
+    background-color: var(--lightest-mint);
 }
