@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
-import Context from "../../contexts/UserContext";
+import Context from "../../contexts/Context";
 import "./createUser.css";
 
 import Header from "../static/Header";

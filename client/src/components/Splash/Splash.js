@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import "./splash.css";
-import Context from "../../contexts/UserContext.js";
+import Context from "../../contexts/Context.js";
 
 import Background from "../static/Background";
 import Header from "../static/Header";
@@ -12,16 +12,14 @@ import SchedulePreview from "../schedulePlanner/SchedulePreview";
 
 import bxMessageDetail from "@iconify/icons-bx/bx-message-detail";
 import bxMessageCheck from "@iconify/icons-bx/bx-message-check";
-import { Icon } from "@iconify/react";
+import { Icon, InlineIcon } from "@iconify/react";
 
 const Splash = () => {
 	const history = useHistory();
 
 	const userInfo = useContext(Context).userInfo;
-	const usersContacts = userInfo.messages;
-	const contactsArr = Object.getOwnPropertyNames(usersContacts);
-	console.log(usersContacts, "<-- usersContacts");
-	console.log(contactsArr, "<-- contactsArr");
+	const usersMessages = userInfo.messages;
+	const correspondants = Object.getOwnPropertyNames(usersMessages);
 
 	const redirectToSchedule = () => {
 		history.push("/schedule-planner");
@@ -39,11 +37,11 @@ const Splash = () => {
 					<div className="inbox splash-content-container">
 						<h4 className="container-inner-title align-mid text-border-bottom">Inbox</h4>
 						<div className="inbox-message-area">
-							{contactsArr.map((contact, i) => {
-								const latestReceived = usersContacts[contact].messages[0];
+							{correspondants.map((corr, i) => {
+								const latestReceived = usersMessages[corr].received[0];
 								return (
 									<div className="message-container" key={i}>
-										<div className="message-icon-and-contact">
+										<div className="message-icon-and-corr">
 											<Icon
 												icon={
 													latestReceived
@@ -60,7 +58,7 @@ const Splash = () => {
 														: null
 												}
 											/>
-											<p className="contact">{`${usersContacts[contact].firstName} ${usersContacts[contact].lastName}`}</p>
+											<p className="correspondant">{corr}</p>
 										</div>
 										<div className="message-text-container">
 											<p className="message-text">

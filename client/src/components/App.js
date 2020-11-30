@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import UserContext from "../contexts/UserContext.js";
+import Context from "../contexts/Context.js";
 import "../styles/app.css";
 
 import CreateUser from "./CreateUser/CreateUser";
@@ -20,7 +20,7 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<UserContext.Provider value={{ userInfo, setUserInfo }}>
+			<Context.Provider value={{ userInfo, setUserInfo }}>
 				<div className="App">
 					<Switch>
 						<Route exact path="/">
@@ -62,7 +62,7 @@ function App() {
 						<Route render={() => <h3 className="error-text">404 - HEALTHHUB PAGE NOT FOUND</h3>} />
 					</Switch>
 				</div>
-			</UserContext.Provider>
+			</Context.Provider>
 		</BrowserRouter>
 	);
 }

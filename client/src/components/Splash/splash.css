@@ -82,6 +82,7 @@
 {
     width: 90%;
     margin: 1em auto;
+
     overflow-y: auto;
 }
 
@@ -90,12 +91,12 @@
     flex-direction: column;
 }
 
-.message-icon-and-contact {
+.message-icon-and-corr {
     display: flex;
     justify-content: space-between;
 }
 
-.contact {
+.correspondant {
     display: inline-block;
     text-transform: capitalize;
     font-size: 1.2em;

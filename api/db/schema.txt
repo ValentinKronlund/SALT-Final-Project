@@ -14,10 +14,8 @@ Base Patient Schema:
     },
     messages: {
         correspondant: {
-            uname: STRING,
-            fname: STRING,
-            lname: STRING,
-            messages: []
+            sent: [{timestamp=Date.now(), message=STRING, read=BOOL }],
+            received: [{timestamp, message, read=BOOL}]
         }
     }
 

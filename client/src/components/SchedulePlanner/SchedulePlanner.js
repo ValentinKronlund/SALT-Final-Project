@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Context from "../../contexts/UserContext";
+import Context from "../../contexts/Context";
 import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
 import { v4 as uuid } from "uuid";
 
