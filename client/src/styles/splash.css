@@ -43,6 +43,7 @@
     border: 1px solid var(--dark-blue);
     border-radius: 15px;
     box-shadow: 2px 4px 8px var(--main-shadow);
+    overflow-y: auto;
 }
 
 .inbox {

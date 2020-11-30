@@ -9,7 +9,7 @@ export default function PreviewActivity({ Activity, Description, Time }) {
 
 	return (
 		<div className="activityPreview">
-			<p>{Activity}</p>
+			<p className="activity-header">{Activity}</p>
 			<p>{Description}</p>
 			<p>{Time}</p>
 		</div>

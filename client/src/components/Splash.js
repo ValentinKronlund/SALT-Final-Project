@@ -43,17 +43,27 @@ const Splash = () => {
 									<div className="message-container" key={i}>
 										<div className="message-icon-and-corr">
 											<Icon
-												icon={latestReceived.read ? bxMessageCheck : bxMessageDetail}
+												icon={
+													latestReceived
+														? latestReceived.read
+															? bxMessageCheck
+															: bxMessageDetail
+														: null
+												}
 												style={
-													latestReceived.read
-														? { color: "#17A744", fontSize: "24px" }
-														: { color: "#00B3D3", fontSize: "24px" }
+													latestReceived
+														? latestReceived.read
+															? { color: "#17A744", fontSize: "24px" }
+															: { color: "#00B3D3", fontSize: "24px" }
+														: null
 												}
 											/>
 											<p className="correspondant">{corr}</p>
 										</div>
 										<div className="message-text-container">
-											<p className="message-text">{latestReceived.message}</p>
+											<p className="message-text">
+												{latestReceived ? latestReceived.message : null}
+											</p>
 										</div>
 									</div>
 								);

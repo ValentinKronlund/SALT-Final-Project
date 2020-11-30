@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
+import Context from "../../contexts/Context";
 
 //import "../../styles/activity.css";
 import "../../styles/schedulePlanner.css";
@@ -7,6 +8,7 @@ import "../../styles/schedulePlanner.css";
 export default function Activity({ Activity, Description, Time, deleted, updateDeleted }) {
 	const ActivitiesArray = useContext(ActivitiesContext);
 	const updateActivitiesArray = useContext(UpdateAtivitiesContext);
+	const user = useContext(Context);
 
 	const removeActivity = () => {
 		const newArray = ActivitiesArray;
@@ -18,6 +20,17 @@ export default function Activity({ Activity, Description, Time, deleted, updateD
 			}
 		});
 		updateActivitiesArray(newArray);
+
+		const requestOptions = {
+			method: "PUT",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ schedule: newArray }),
+		};
+		fetch(
+			`http://localhost:1337/api/mongoDB/?firstName=${user.userInfo.firstName}`,
+			requestOptions
+		).then((response) => console.log("---- Response.json() ----\n", response.json()));
+
 		if (deleted) {
 			updateDeleted(false);
 		} else {
@@ -27,11 +40,13 @@ export default function Activity({ Activity, Description, Time, deleted, updateD
 
 	return (
 		<div className="activity">
-			<p>{Activity}</p>
+			<p className="activity-header">{Activity}</p>
 			<p>{Description}</p>
 			<p>{Time}</p>
-			<button onClick={removeActivity}>Delete</button>
-			<button>Mark as done</button>
+			<button className="buttons" onClick={removeActivity}>
+				Delete
+			</button>
+			<button className="buttons">Mark as done</button>
 		</div>
 	);
 }

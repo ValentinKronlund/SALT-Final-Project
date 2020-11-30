@@ -1,8 +1,5 @@
 .schedule-title {
-    /*font-size: 1.2em;*/    
-    font-size: 22px;
-    letter-spacing: 0.05em;
-    font-weight: 700;
+ font-size: 2em;
 }
 
 .activityPreview {
@@ -26,4 +23,8 @@
     width: 90%;
     margin: 1em auto;
     overflow-y: auto;
+}
+
+.activity-header{
+    font-size: 2em;
 }

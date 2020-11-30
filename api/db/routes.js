@@ -103,6 +103,35 @@ router.put("/messages", async (req, res) => {
 	const recipient = await queries.getUser(rawData, req.body.to);
 	const recipientName = recipient[0].username;
 
+	// console.log(req.body, "<--- req.body");
+
+	// console.log(sender, "<--- Sender");
+	// console.log(recipient, "<--- Recipient");
+	// console.log(recipientName, "<-- rec name");
+
+	console.log(`
+		FROM: ${senderName}.
+		TO: ${recipientName}
+		MESSAGE: ${req.body.messageObj.message}
+	
+	`);
+
+	console.log(sender[0].messages[recipientName], "<-- sender - correspondance");
+	if (!sender[0].messages[recipientName]) {
+		const generateCorrespondance = {
+			...sender[0].messages,
+			[recipientName]: {
+				sent: [],
+				received: [],
+			},
+		};
+
+		await rawData.updateOne(
+			{ username: senderName },
+			{ $set: { messages: generateCorrespondance } }
+		);
+	}
+
 	const senderNewMessages = {
 		...sender[0].messages,
 		[recipientName]: {
@@ -112,21 +141,41 @@ router.put("/messages", async (req, res) => {
 					message: req.body.messageObj.message,
 					read: false,
 				},
-				...(sender[0].messages === undefined ? [] : sender[0].messages[recipientName].sent),
+				...(sender[0].messages[recipientName].sent === undefined
+					? []
+					: sender[0].messages[recipientName].sent),
 			],
 			received: [
-				...(sender[0].messages === undefined ? [] : sender[0].messages[recipientName].received),
+				...(sender[0].messages[recipientName].received === undefined
+					? []
+					: sender[0].messages[recipientName].received),
 			],
 		},
 	};
 
-	// console.log(senderNewMessages);
+	console.log(recipient[0].messages[senderName], "<-- recipient - correspondance");
+	if (!recipient[0].messages[senderName]) {
+		const generateCorrespondance = {
+			...recipient[0].messages,
+			[senderName]: {
+				sent: [],
+				received: [],
+			},
+		};
+
+		await rawData.updateOne(
+			{ username: recipientName },
+			{ $set: { messages: generateCorrespondance } }
+		);
+	}
 
 	const recipientNewMessages = {
 		...recipient[0].messages,
 		[senderName]: {
 			sent: [
-				...(recipient[0].messages === undefined ? [] : recipient[0].messages[senderName].sent),
+				...(recipient[0].messages[senderName].sent === undefined
+					? []
+					: recipient[0].messages[senderName].sent),
 			],
 			received: [
 				{
@@ -134,10 +183,13 @@ router.put("/messages", async (req, res) => {
 					message: req.body.messageObj.message,
 					read: false,
 				},
-				...(recipient[0].messages === undefined ? [] : recipient[0].messages[senderName].received),
+				...(recipient[0].messages[senderName].received === undefined
+					? []
+					: recipient[0].messages[senderName].received),
 			],
 		},
 	};
+	// console.log(recipientNewMessages, "<-- recipientNewMessages");
 
 	const updateSender = await rawData.updateOne(
 		{ username: senderName },
@@ -172,7 +224,7 @@ router.post("/", async (req, res) => {
 			"postalcode": req.body.address.postalcode,
 		},
 		"messages": {
-			"tester": {
+			"Tronald": {
 				"sent": [
 					{
 						"timestamp": Date.now(),
@@ -190,12 +242,13 @@ router.post("/", async (req, res) => {
 					{
 						"timestamp": Date.now(),
 						"message":
-							"Stop the vote! Mail-in voting is fraudulent. This is going to be a fraud like you’ve never seen",
+							"Twitter is sending out totally false “Trends” that have absolutely nothing to do with what is really trending in the world. They make it up, and only negative “stuff”. Same thing will happen to Twitter as is happening to @FoxNews daytime. Also, big Conservative discrimination!",
 						"read": false,
 					},
 					{
 						"timestamp": Date.now(),
-						"message": "Despite the constant negative press covfefe",
+						"message":
+							"A total FRAUD. Statehouse Republicans, proud, strong and honest, will never let this travesty stand!",
 						"read": true,
 					},
 				],
@@ -203,9 +256,9 @@ router.post("/", async (req, res) => {
 		},
 		"schedule": [
 			{
-				Activity: "Eat",
-				Description: "Yummy",
-				Time: "Now",
+				Activity: "Walk Doggo",
+				Description: "He needs a walk",
+				Time: "14:00",
 			},
 		],
 	};

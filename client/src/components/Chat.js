@@ -55,10 +55,16 @@ const Chat = () => {
 						serCurrentConversation(messageObject[index]);
 					}}
 					key={corr}
-					className={latestReceived.read ? "conversation read" : "conversation"}>
+					className={
+						latestReceived
+							? latestReceived.read
+								? "conversation read"
+								: "conversation"
+							: "conversation"
+					}>
 					<p className="corr-name">{corr}</p>
-					<p className="msg-time">{latestReceived.timestamp}</p>
-					<p className="msg-preview">{latestReceived.message}</p>
+					<p className="msg-time">{latestReceived ? latestReceived.timestamp : null}</p>
+					<p className="msg-preview">{latestReceived ? latestReceived.message : null}</p>
 				</div>
 			);
 		});
@@ -102,9 +108,7 @@ const Chat = () => {
 									value={recipient}
 									onChange={(e) => setRecipient(e.currentTarget.value)}
 								/>
-								<div className="chat-feed">
-									<p>It doesn't look like you have any messages yet!</p>
-								</div>
+								<div className="chat-feed"></div>
 								<form className="msg-input" onSubmit={(e) => sendMessage(e)}>
 									<textarea
 										className="msg-textarea"

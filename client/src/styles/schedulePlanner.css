@@ -1,10 +1,75 @@
 .activity{
-    background: cyan;
     display: flex;
     flex-direction: column;
     width: 50%;
-    border-radius: 15px;
     margin-left: 25%;
-    margin-top: 2%;
+    margin-top: 1%;
     align-items: center;
+    font-size: 2em;
+    border: 2px solid #0088A0;
+    border-radius: 1em;
+    background-color: #fff;
+}
+
+.buttons {
+    margin: 5px 0 2px 0;
+    border-radius: 6px;
+    width: 20%;
+    height: 2em;
+}
+
+.buttons:hover {
+    transform: scale(1.1);
+}
+
+
+.add-activity-button {
+    margin-left: 43.5%;
+    margin-top: 2%;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 33px;
+}
+
+.add-activity-button:hover {
+    transform: scale(1.1);
+}
+
+.schedule-add-menu {
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    background-color: #E7F5E7;
+    border: 2px solid #0088A0;
+    
+
+}
+.schedule-add-bar {
+    height: 20px;
+    width: 100%;
+
+    cursor: move;
+    overflow: hidden;
+
+    color: #E7F5E7;
+    text-align: center;
+    background-color: #17A744;
+}
+
+.schedule-add-bar button {
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+
+.hidden{
+    display: none;
+}
+
+.close-btn{
+    width: 20px;
+    height: 20px;
+
 }

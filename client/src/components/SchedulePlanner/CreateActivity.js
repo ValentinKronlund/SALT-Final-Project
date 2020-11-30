@@ -3,6 +3,12 @@ import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
 import Context from "../../contexts/Context";
 import { useHistory } from "react-router-dom";
 
+import Header from "../staticComponents/Header";
+import Background from "../staticComponents/Background";
+import Footer from "../staticComponents/Footer";
+
+import "../../styles/createActivity.css";
+
 export default function CreateActivity() {
 	const ActivitiesArray = useContext(ActivitiesContext);
 	const updateActivitiesArray = useContext(UpdateAtivitiesContext);
@@ -13,6 +19,10 @@ export default function CreateActivity() {
 	const [Activity, updateActivity] = useState("");
 	const [Description, updateDescription] = useState("");
 	const [Time, updateTime] = useState("");
+
+	const goBack = () => {
+		history.push("/schedule-planner");
+	};
 
 	const addActivity = () => {
 		const newActivity = {
@@ -41,38 +51,45 @@ export default function CreateActivity() {
 	};
 
 	return (
-		<div>
-			<input
-				key={Activity}
-				type="text"
-				className="new-user-input"
-				name="activity"
-				placeholder="Activity"
-				value={Activity}
-				onChange={(e) => updateActivity(e.currentTarget.value)}
-				required
-			/>
-			<input
-				type="text"
-				className="new-user-input"
-				name="description"
-				placeholder="Description"
-				value={Description}
-				onChange={(e) => updateDescription(e.currentTarget.value)}
-				required
-			/>
-			<input
-				type="text"
-				className="new-user-input"
-				name="time"
-				placeholder="Time"
-				value={Time}
-				onChange={(e) => updateTime(e.currentTarget.value)}
-				required
-			/>
-			<button onClick={addActivity} type="submit">
-				Add Activity
-			</button>
-		</div>
+		<>
+			<Header />
+			<Background />
+			<div className="creation-body">
+				<input
+					type="text"
+					className="input-field"
+					name="activity"
+					placeholder="Activity"
+					value={Activity}
+					onChange={(e) => updateActivity(e.currentTarget.value)}
+					required
+				/>
+				<input
+					type="text"
+					className="input-field"
+					name="description"
+					placeholder="Description"
+					value={Description}
+					onChange={(e) => updateDescription(e.currentTarget.value)}
+					required
+				/>
+				<input
+					type="text"
+					className="input-field"
+					name="time"
+					placeholder="Time"
+					value={Time}
+					onChange={(e) => updateTime(e.currentTarget.value)}
+					required
+				/>
+				<button className="" onClick={addActivity} type="submit">
+					Add Activity
+				</button>
+				<button className="add-activity-back" onClick={goBack} type="submit">
+					Back
+				</button>
+			</div>
+			<Footer />
+		</>
 	);
 }

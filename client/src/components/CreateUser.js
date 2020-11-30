@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 import Context from "../contexts/Context.js";
+import "../styles/createUser.css";
 
 import Header from "./staticComponents/Header";
 import Background from "./staticComponents/Background";
@@ -28,6 +29,10 @@ const CreateUser = () => {
 	};
 
 	const history = useHistory();
+
+	const goBack = () => {
+		history.push("/");
+	};
 
 	const createUser = (e) => {
 		e.preventDefault();
@@ -65,8 +70,8 @@ const CreateUser = () => {
 			<Background />
 			<p className="error">{loginErrors === "" ? "" : loginErrors}</p>
 			<form className="new-user-form" onSubmit={(e) => createUser(e)}>
-				<fieldset>
-					<legend>Personal Information</legend>
+				<fieldset className="fieldset">
+					<legend className="fieldset-legend">Personal Information</legend>
 					<label for="fname">First name:</label>
 					<input
 						type="text"
@@ -75,6 +80,7 @@ const CreateUser = () => {
 						placeholder="John"
 						value={FirstName}
 						onChange={(e) => updateFirstName(e.currentTarget.value)}
+						autoComplete="on"
 						required
 					/>
 					<label for="lname">Last name:</label>
@@ -85,6 +91,7 @@ const CreateUser = () => {
 						placeholder="Doe"
 						value={LastName}
 						onChange={(e) => updateLastName(e.currentTarget.value)}
+						autoComplete="none"
 						required
 					/>
 					<label for="uname">Username:</label>
@@ -95,6 +102,7 @@ const CreateUser = () => {
 						placeholder="johnDoe"
 						value={Username}
 						onChange={(e) => updateUsername(e.currentTarget.value)}
+						autoComplete="none"
 						required
 					/>
 					<label for="password">Password:</label>
@@ -105,6 +113,7 @@ const CreateUser = () => {
 						placeholder="••••••••"
 						value={Password}
 						onChange={(e) => updatePassword(e.currentTarget.value)}
+						autoComplete="none"
 						required
 					/>
 					<label for="password-confirm">Confirm password:</label>
@@ -112,9 +121,11 @@ const CreateUser = () => {
 						type="password"
 						className="new-user-input"
 						name="password-confirm"
+						minlength="6"
 						placeholder="••••••••"
 						value={ConfirmPassword}
 						onChange={(e) => updateConfirmPassword(e.currentTarget.value)}
+						autoComplete="none"
 						required
 					/>
 					<label for="personNr">Personnummer:</label>
@@ -125,9 +136,10 @@ const CreateUser = () => {
 						max="12"
 						className="new-user-input"
 						name="personNr"
-						placeholder="XXXXXX-XXXX"
+						placeholder="yymmdd-xxxx"
 						value={Personnummer}
 						onChange={(e) => updatePersonnummer(e.currentTarget.value)}
+						autoComplete="none"
 						required
 					/>
 					<label for="phone">Phonenumber:</label>
@@ -141,6 +153,7 @@ const CreateUser = () => {
 						placeholder="0701234567"
 						value={Phonenumber}
 						onChange={(e) => updatePhonenumber(e.currentTarget.value)}
+						autoComplete="none"
 						required
 					/>
 					<label for="email">Email:</label>
@@ -151,11 +164,12 @@ const CreateUser = () => {
 						placeholder="john.doe@example.com"
 						value={Email}
 						onChange={(e) => updateEmail(e.currentTarget.value)}
+						autoComplete="none"
 						required
 					/>
 				</fieldset>
-				<fieldset>
-					<legend>Address</legend>
+				<fieldset className="fieldset">
+					<legend className="fieldset-legend">Address</legend>
 					<label for="street">Street name:</label>
 					<input
 						type="text"
@@ -164,6 +178,7 @@ const CreateUser = () => {
 						placeholder="Lucky Street 23"
 						value={Street}
 						onChange={(e) => updateStreet(e.currentTarget.value)}
+						autoComplete="none"
 						required
 					/>
 					<label for="city">City:</label>
@@ -174,6 +189,7 @@ const CreateUser = () => {
 						placeholder="Luxemburg"
 						value={City}
 						onChange={(e) => updateCity(e.currentTarget.value)}
+						autoComplete="none"
 						required
 					/>
 					<label for="postalCode">Postal code:</label>
@@ -183,13 +199,19 @@ const CreateUser = () => {
 						max="5"
 						className="new-user-input"
 						name="postalCode"
-						placeholder="XXXXX"
+						placeholder="13337"
 						value={PostalCode}
 						onChange={(e) => updatePostalCode(e.currentTarget.value)}
+						autoComplete="none"
 						required
 					/>
 				</fieldset>
-				<button type="submit">Create Account</button>
+				<button className="new-user-button" type="submit">
+					Create Account
+				</button>
+				<button className="new-user-button" onClick={goBack}>
+					Back
+				</button>
 			</form>
 			<Footer />
 		</>

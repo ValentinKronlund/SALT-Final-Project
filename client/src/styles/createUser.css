@@ -1,3 +1,71 @@
-.new-user-form {}
+.new-user-form,
+.fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-.new-user-input{}
+.new-user-form {
+    height: 80vh;
+    width: 40%;
+    margin: auto;
+    overflow-y: auto;
+}
+
+.fieldset {
+    justify-content: center;
+    width: 100%;
+    border: 2px solid var(--darkest-blue);
+    border-radius: 1em;
+    background-color: var(--main-transparent);
+}
+
+.fieldset-legend {
+    font-size: 1.4em;
+}
+
+.new-user-input{
+    min-width: 200px;
+    margin-bottom: .6em;
+    padding: .5em;
+
+    font-weight: 700;
+    text-align: center;
+    border: .5px solid var(--darkest-blue);
+    border-radius: 1em;
+}
+
+.new-user-input:focus {
+    outline: none;
+    border: 1px solid var(--main-accent);
+}
+
+.new-user-button {
+
+    height: 2em;
+    width: 20%;
+    margin: .3em;
+
+    color: var(--main-white);
+    font-size: 1.4em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+
+    border: 3px solid var(--darkest-blue);
+    border-radius: 1em;
+    background-color: var(--darkest-blue);
+    box-shadow: 0px 0px 4px var(--main-white);
+}
+
+.new-user-button:hover {
+    box-shadow: 0px 0px 8px var(--main-accent);
+}
+
+.new-user-button:focus {
+    border: 2px solid var(--main-accent);
+    outline: none;
+}
+
+.error {
+
+}

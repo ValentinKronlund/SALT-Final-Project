@@ -21,7 +21,7 @@ export default function SchedulePreview() {
 		if (ActivitiesArray.length === 0) {
 			return <p>--Schedule Empty! --</p>;
 		} else {
-			const firstActivity = ActivitiesArray[0];
+			/* 			const firstActivity = ActivitiesArray[0];
 			return (
 				<PreviewActivity
 					Activity={firstActivity.Activity}
@@ -30,16 +30,17 @@ export default function SchedulePreview() {
 					deleted={deleted}
 					updateDeleted={updateDeleted}
 				/>
-			);
-			/* return ActivitiesArray.map((act) => (
-				<Activity
+			); */
+
+			return ActivitiesArray.map((act) => (
+				<PreviewActivity
 					Activity={act.Activity}
 					Description={act.Description}
 					Time={act.Time}
 					deleted={deleted}
 					updateDeleted={updateDeleted}
 				/>
-			)); */
+			));
 		}
 	};
 

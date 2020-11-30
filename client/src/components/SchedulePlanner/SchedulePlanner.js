@@ -53,7 +53,7 @@ export default function SchedulePlanner() {
 			<Header />
 			<Background />
 			<div className="">{mapActivities()}</div>
-			<button onClick={goToCreatePage} type="submit">
+			<button className="add-activity-button" onClick={goToCreatePage} type="submit">
 				Add an Activity
 			</button>
 			<Footer />
