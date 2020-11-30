@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import Context from "../../contexts/Context.js";
+import { Icon } from "@iconify/react";
+import bxMessageAdd from "@iconify/icons-bx/bx-message-add";
 
-export default function Sidebar() {
+export default function Sidebar({ generateConversations, setChatOpened, setNewConversation }) {
+	const userInfo = useContext(Context).userInfo;
+
 	return (
 		<aside className="conversations">
 			<p className="container-inner-title align-mid text-border-bottom">Messages</p>

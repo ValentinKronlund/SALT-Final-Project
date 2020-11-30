@@ -8,8 +8,6 @@ import Footer from "../static/Footer";
 import Sidebar from "./Sidebar";
 
 import "./chat.css";
-import { Icon } from "@iconify/react";
-import bxMessageAdd from "@iconify/icons-bx/bx-message-add";
 
 const Chat = () => {
 	const userInfo = useContext(Context).userInfo;
@@ -112,7 +110,11 @@ const Chat = () => {
 			<Header />
 			<Background />
 			<main className="chat-main-container">
-				<Sidebar />
+				<Sidebar
+					generateConversations={generateConversations}
+					setChatOpened={setChatOpened}
+					setNewConversation={setNewConversation}
+				/>
 				<section className="chat">{generateChat()}</section>
 			</main>
 			<Footer />
