@@ -3,6 +3,8 @@ import UserContext from "../../contexts/UserContext.js";
 import { Icon } from "@iconify/react";
 import prescriptionBottleAlt from "@iconify/icons-fa-solid/prescription-bottle-alt";
 
+import "./styles/prescriptions.css";
+
 export default function Prescriptions() {
 	const userInfo = useContext(UserContext).userInfo;
 	const setUserInfo = useContext(UserContext).setUserInfo;
@@ -27,19 +29,31 @@ export default function Prescriptions() {
 					<div key={`prescription-${i}`} className="prescription">
 						<div className="prescription-header">
 							<p className="prescription-title">{prescription.title}</p>
-							<p className="prescription-severity">{`${prescription.dosage} / ${prescription.form}`}</p>
+							<p className="prescription-dosage">{`${prescription.dosage} / ${prescription.form}`}</p>
 							<p className="prescription-doctor">{`Perscribed by: ${prescription.doctor}`}</p>
 						</div>
-						<p className="prescription-remaining">{`Remaining prescription: ${prescription.prescriptionRemaining} of ${prescription.prescription}`}</p>
-						<Icon
-							icon={prescriptionBottleAlt}
-							style={{ color: presColorAsString(), fontSize: "40px" }}
-						/>
-						<p className="prescription-description">{prescription.description}</p>
+						<div className="prescription-pre-body">
+							<p className="prescription-remaining">
+								Remaining:{" "}
+								<span className="txt-bold">
+									{prescription.prescriptionRemaining} of {prescription.prescription}
+								</span>
+							</p>
+							<Icon
+								className="prescription-remaining-icon"
+								icon={prescriptionBottleAlt}
+								style={{ color: presColorAsString(), fontSize: "40px" }}
+							/>
+						</div>
+						<div className="prescription-body">
+							<p className="prescription-description">{prescription.description}</p>
+						</div>
 						{prescription.notes ? <p className="prescription-notes">{prescription.notes}</p> : null}
-						<a className="prescription-link" href={prescription.info} target="_blank">
-							Read more about this prescription
-						</a>
+						<div className="prescription-footer">
+							<a className="prescription-link fs-medium" href={prescription.info} target="_blank">
+								Read more about this medication
+							</a>
+						</div>
 					</div>
 				);
 			});

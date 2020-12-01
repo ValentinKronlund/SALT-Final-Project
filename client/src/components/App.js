@@ -10,6 +10,10 @@ import Chat from "./Chat/Chat";
 import Records from "./Records/Records";
 import SchedulePlanner from "./SchedulePlanner/SchedulePlanner";
 import CreateActivity from "./SchedulePlanner/CreateActivity";
+<<<<<<< HEAD
+import Appointments from "./Appointments/Appointments";
+=======
+>>>>>>> c07b17f8e0ebc1ffc2cef424153df5d212fcb986
 
 import useLocalStorage from "../hooks/useLocalStorage.js";
 
@@ -27,6 +31,10 @@ function App() {
 					<Switch>
 						<Route exact path="/">
 							{userInfo ? <Redirect to="/home" /> : <Redirect to="/login" />}
+						</Route>
+
+						<Route exact path="/appointments">
+							{userInfo ? <Appointments /> : <Redirect to="/login" />}
 						</Route>
 
 						<Route exact path="/chat">
