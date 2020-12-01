@@ -1,20 +1,48 @@
-.creation-body {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 1%;
-    align-items: center;
-    border: 2px solid #0088A0;
-    border-radius: 1em;
-    background-color: #fff;
-}
+.creation-body {}
 
 .input-field{
-    width: 60%;
-    text-align: center;
-    margin-top: 0.5%;
-    font-size: 3em;
-    border-radius: 8px;
+  
+  margin: 20px 0 10px 40px;
+  
+  border: none;
+  
+  font-size: 2em;
+  font-family: 'poppins';
+  background-color: transparent;
+}
+
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
+
+.input-field[type=text] {
+  width: 80%;
+  height: 20px;
+}
+
+.top-input-underline {
+  margin: 0 40px;
+}
+
+.add-window-button{
+  float: right;
+
+  margin: 40px;
+  padding: 5px;
+
+  border: none;
+  border-radius: 5px;
+
+  font-family: 'poppins';
+
+}
+
+.add-act {
+  cursor: pointer;
+
+  background-color: #18DCFF;
+}
+.add-act:hover {
+  background-color: #c1f6ff;
+
 }

@@ -1,16 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Context from "../../contexts/UserContext";
+import Context from "../../contexts/Context";
 import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
 import { v4 as uuid } from "uuid";
 
+import Activity from "./Activity";
 import Header from "../static/Header";
-import Background from "../static/Background";
 import Footer from "../static/Footer";
+import Background from "../static/Background";
+import AddActivity from "./AddActivity"
 
 import "../../styles/schedulePlanner.css";
-
-import Activity from "./Activity";
 
 export default function SchedulePlanner() {
 	const history = useHistory();
@@ -20,6 +20,8 @@ export default function SchedulePlanner() {
 	const userInfo = useContext(Context).userInfo;
 
 	const [deleted, updateDeleted] = useState(false);
+	const [isHidden, toggleIsHidden] = useState(false);
+	const [position, setPosition] = useState({x:0,y:0});
 
 	const goToCreatePage = () => {
 		history.push("/create-activity");
@@ -52,9 +54,16 @@ export default function SchedulePlanner() {
 		<>
 			<Header />
 			<Background />
+			{isHidden ? 
+			<AddActivity 
+				isHidden={isHidden}
+				toggleIsHidden={toggleIsHidden}
+				position={position}
+				setPosition={setPosition}
+			/> : null}
 			<div className="">{mapActivities()}</div>
-			<button className="add-activity-button" onClick={goToCreatePage} type="submit">
-				Add an Activity
+			<button className="add-activity-button" onClick={() => toggleIsHidden(!isHidden)} type="submit">
+				<p>Add +</p>
 			</button>
 			<Footer />
 		</>

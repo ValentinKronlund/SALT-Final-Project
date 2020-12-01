@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import Context from "../../contexts/UserContext";
+import Context from "../../contexts/Context";
 import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
 
 import Activity from "./Activity";
@@ -32,9 +32,8 @@ export default function SchedulePreview() {
 				/>
 			); */
 
-			return ActivitiesArray.map((act, i) => (
+			return ActivitiesArray.map((act) => (
 				<PreviewActivity
-					key={i}
 					Activity={act.Activity}
 					Description={act.Description}
 					Time={act.Time}

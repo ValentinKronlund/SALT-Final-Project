@@ -22,10 +22,10 @@
     transform: scale(1.1);
 }
 
-
 .add-activity-button {
-    margin-left: 43.5%;
+    margin-left: 47%;
     margin-top: 2%;
+
     padding: 12px;
     border-radius: 6px;
     font-size: 33px;
@@ -35,41 +35,45 @@
     transform: scale(1.1);
 }
 
-.schedule-add-menu {
+.add-window-container {
     position: absolute;
 
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 280px;
+    z-index: 10;
 
+    font-family: 'poppins';
+
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px #3c3c3c;
     background-color: #E7F5E7;
-    border: 2px solid #0088A0;
-    
-
 }
-.schedule-add-bar {
-    height: 20px;
+
+.add-window-bar {
+    height: 30px;
     width: 100%;
 
     cursor: move;
     overflow: hidden;
 
-    color: #E7F5E7;
+    font-size: 2em;
     text-align: center;
-    background-color: #17A744;
+    background-color: #9ee89e;
 }
 
-.schedule-add-bar button {
+.add-window-close-btn {
     top: 0;
     right: 0;
     position: absolute;
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 0;
+    color: #1B1919;
+    background-color: transparent;
 }
-
-.hidden{
-    display: none;
-}
-
-.close-btn{
-    width: 20px;
-    height: 20px;
-
+.add-window-close-btn:hover {
+    background-color: #FF898A;
 }
