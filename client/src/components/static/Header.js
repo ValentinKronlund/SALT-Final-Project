@@ -17,8 +17,8 @@ const Header = () => {
 		left: () => {
 			return (
 				<React.Fragment>
-					<Link to="/home" className="header-link header-nav-element header-nav-left">
-						Home
+					<Link to="/Records" className="header-link header-nav-element header-nav-left">
+						Records
 					</Link>
 					<Link to="/schedule-planner" className="header-link header-nav-element header-nav-left">
 						Schedule

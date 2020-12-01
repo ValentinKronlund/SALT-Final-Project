@@ -106,13 +106,16 @@ const Splash = () => {
 						<div className="all-recommendations">
 							<div className="recommendation">
 								<p>We see that you haven't yet gotten tested for Covid.</p>
-								<Link className="inner-splash-content-link" to="/home">
+								<a
+									href="https://www.1177.se/Stockholm/sjukdomar--besvar/lungor-och-luftvagar/inflammation-och-infektion-ilungor-och-luftror/om-covid-19--coronavirus/lamna-prov-och-fa-provsvar-om-covid-19/lamna-prov-for-covid-19/"
+									className="inner-splash-content-link"
+									to="/home">
 									<p>Click here to find your nearest test hub</p>
-								</Link>
+								</a>
 							</div>
 							<div className="recommendation">
 								<p>It has been 287 days since you last dentist appointment.</p>
-								<Link className="inner-splash-content-link" to="/home">
+								<Link className="inner-splash-content-link" to="/appointments">
 									<p>Click here to book an appointment</p>
 								</Link>
 							</div>

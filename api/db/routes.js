@@ -205,6 +205,93 @@ router.post("/", async (req, res) => {
 				Time: "14:00",
 			},
 		],
+		"diagnoses": [
+			{
+				"title": "Crohn's Disease",
+				"severity": "Mild",
+				"description":
+					"Crohn's disease is a type of inflammatory bowel disease (IBD). It causes inflammation of your digestive tract, which can lead to abdominal pain, severe diarrhea, fatigue, weight loss and malnutrition.",
+				"notes":
+					"Patient shows symptoms of Crohn's Disease, this can be confirmed after colonoscopy performed on patients last visit. Symptoms are currently mild but can worsen unless treated. Prescribing Cortiment and Azathioprine.",
+				"info":
+					"https://www.mayoclinic.org/diseases-conditions/crohns-disease/symptoms-causes/syc-20353304",
+				"doctor": "Dr. Feelgood",
+			},
+			{
+				"title": "Migraine",
+				"severity": "Chronic",
+				"description":
+					"A migraine can cause severe throbbing pain or a pulsing sensation, usually on one side of the head. It's often accompanied by nausea, vomiting, and extreme sensitivity to light and sound. Migraine attacks can last for hours to days, and the pain can be so severe that it interferes with your daily activities.",
+				"notes":
+					"Patient experiences symptoms closely resembling chronic Migraine. Symptoms interfere with patient daily activities. Citodon and Naproxen have been prescribed ",
+				"info":
+					"https://www.mayoclinic.org/diseases-conditions/migraine-headache/symptoms-causes/syc-20360201",
+				"doctor": "Dr. Feelgood",
+			},
+		],
+		"prescriptions": [
+			{
+				"title": "Azathioprine",
+				"dosage": "50mg",
+				"form": "pill",
+				"description": "Patient should take 200mg, or four pills, daily for Crohn's Disease. ",
+				"notes": null,
+				"prescription": 4,
+				"prescriptionRemaining": 1,
+				"info": "https://www.fass.se/LIF/product?userType=0&nplId=20050511000017",
+				"doctor": "Dr. Feelgood",
+			},
+			{
+				"title": "Cortiment",
+				"dosage": "9mg",
+				"form": "tablet",
+				"description": "Patient should take 9mg, or one pill, daily for Crohn's Disease. ",
+				"notes": null,
+				"prescription": 4,
+				"prescriptionRemaining": 3,
+				"info": "https://www.fass.se/LIF/product?userType=0&nplId=20140405000046",
+				"doctor": "Dr. Feelgood",
+			},
+			{
+				"title": "Citodon",
+				"dosage": "500mg/30mg",
+				"form": "pill",
+				"description":
+					"Patient should take 500mg/30mg, or one pill, on first symptoms of Migraine. ",
+				"notes": null,
+				"prescription": 3,
+				"prescriptionRemaining": 0,
+				"info": "https://www.fass.se/LIF/product?userType=0&nplId=19820312000059",
+				"doctor": "Dr. Feelgood",
+			},
+			{
+				"title": "Naproxen Mylan",
+				"dosage": "500mg",
+				"form": "pill",
+				"description": "Patient should take 500mg, or one pill, on first symptoms of Migraine. ",
+				"notes": null,
+				"prescription": 2,
+				"prescriptionRemaining": 2,
+				"info": "https://www.fass.se/LIF/product?userType=0&nplId=19870918000182",
+				"doctor": "Dr. Feelgood",
+			},
+		],
+		"doctorsNotes": [
+			{
+				"date": "12-01-2020",
+				"title": "Showing signs of improvement",
+				"for": "Crohn's Disease",
+				"description": "Patient is showing signs of improvement. Will continue prescribed dosage.",
+				"doctor": "Dr. Feelgood",
+			},
+			{
+				"date": "12-01-2020",
+				"title": "Notes from latest visit",
+				"for": "Annual Check-up",
+				"description": "Except for previous Crohn's diagnose patient is healthy.",
+				"doctor": "Dr. Feelgood",
+			},
+		],
 	};
 	try {
 		data = await rawData.insertOne(person);

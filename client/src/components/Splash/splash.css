@@ -82,6 +82,7 @@
 {
     width: 90%;
     margin: 1em auto;
+    padding-right: 1em;
     overflow-y: auto;
 }
 
