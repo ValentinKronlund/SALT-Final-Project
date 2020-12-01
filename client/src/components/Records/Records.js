@@ -7,7 +7,7 @@ import Prescriptions from "./Prescriptions";
 import Notes from "./Notes";
 import UserContext from "../../contexts/UserContext.js";
 
-import "./records.css";
+import "./styles/records.css";
 
 export default function Records() {
 	const userInfo = useContext(UserContext).userInfo;

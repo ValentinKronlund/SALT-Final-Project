@@ -23,6 +23,7 @@
     --main-white: #fff;
     --main-black: #161616;
     --main-gray: #e6e6e6;
+    --alt-gray: #9b9b9b;
     --main-transparent: #ffffffa5;
     --alt-transparent: #5c5c5ca5;
 
@@ -32,7 +33,7 @@
 
 ::-webkit-scrollbar {
     width: 7px;
-    background-color: var(--lightest-blue);
+    background-color: none;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -53,7 +54,7 @@
     grid-template-rows: 7.5% auto;
     padding: .5em;
     font-family: 'Poppins', sans-serif;
-    background-color: var(--main-white);
+    background-color: var(--main-transparent);
     border: 1px solid var(--dark-blue);
     border-radius: 15px;
     box-shadow: 2px 4px 8px var(--main-shadow);
@@ -73,6 +74,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 3em;
+}
+
+.fs-medium {
+    font-size: 1.2em;
 }
 
 .txt-bold {

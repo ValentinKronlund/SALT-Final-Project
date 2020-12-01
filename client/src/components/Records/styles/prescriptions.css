@@ -1,0 +1,112 @@
+.prescription {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 4em 4.5em auto 2em;
+    grid-row-gap: .5em;
+    height: 20em;
+    width: 90%;
+
+    margin: 2em auto;
+
+    border: 1px solid var(--dark-blue);
+    border-radius: 15px;
+    background-color: var(--main-white);
+    box-shadow: 0px 0px 2px var(--darkest-blue);
+    overflow: hidden;
+}
+
+.prescription-header {
+    grid-column: 1/4;
+    grid-column-gap: 2em;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.5em 1.5em;
+
+    padding: .5em 1em;
+
+    background-color: var(--lightest-blue);
+}
+
+.prescription-title {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+}
+
+.prescription-dosage {
+    grid-column: 1;
+    grid-row: 2;
+    color: var(--alt-transparent);
+}
+
+.prescription-doctor {
+    grid-column: 2/3;
+    grid-row: 1/3;
+    text-align: right;
+    align-self: center;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--alt-transparent);
+}
+
+.prescription-pre-body {
+    grid-column: 1/4;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 80% auto;
+
+    padding: .5em 1em;
+}
+
+.prescription-remaining {
+    justify-self: left;
+    align-self: center;
+    font-weight: 300;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+}
+
+.prescription-remaining-icon {
+    justify-self: right;
+}
+
+.prescription-body {
+    grid-column: 1/4;
+    grid-row: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: .5em 1em;
+
+    border-top: 1px solid var(--main-gray);
+    overflow: auto;
+}
+
+.prescription-description {
+    font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.prescription-footer {
+    grid-column: 1/4;
+    grid-row: 4;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-top: 1px solid var(--alt-gray);
+    background-color: var(--main-gray);
+}
+
+.prescription-link {
+    text-decoration: none;
+    color: var(--darkest-blue);
+    transition: all .2s ease-in-out;
+}
+
+.prescription-link:hover {
+    letter-spacing: 0.05em;
+}

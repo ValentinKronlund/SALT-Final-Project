@@ -20,8 +20,6 @@ const Splash = () => {
 	const userInfo = useContext(Context).userInfo;
 	const usersContacts = userInfo.messages;
 	const contactsArr = Object.getOwnPropertyNames(usersContacts);
-	console.log(usersContacts, "<-- usersContacts");
-	console.log(contactsArr, "<-- contactsArr");
 
 	const redirectToSchedule = () => {
 		history.push("/schedule-planner");
