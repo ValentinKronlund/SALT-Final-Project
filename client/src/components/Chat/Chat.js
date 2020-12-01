@@ -95,17 +95,21 @@ const Chat = () => {
 			<>
 				{chatHeader()}
 				<div className="chat-feed">
-					{generateFeed().map((message, i) => (
-						<div
-							key={i}
-							className={
-								message.fromId === message.toId ? "msg-container sent" : "msg-container received"
-							}>
-							<p className="message-from">{message.from}</p>
-							<p className="message-time">{moment(message.timestamp).format("MMM Do, hh:mm a")}</p>
-							<p className="message">{message.message}</p>
-						</div>
-					))}
+					{newConversation
+						? null
+						: generateFeed().map((message, i) => (
+								<div
+									key={i}
+									className={
+										message.fromId === userInfo.id ? "msg-container sent" : "msg-container received"
+									}>
+									<p className="message-from alt-text-border-bottom align-left">{message.from}</p>
+									<p className="message-time alt-text-border-bottom align-right">
+										{moment(message.timestamp).format("MMM Do, hh:mm a")}
+									</p>
+									<p className="message">{message.message}</p>
+								</div>
+						  ))}
 				</div>
 				<form className="msg-input" onSubmit={(e) => sendMessage(e)}>
 					<textarea
