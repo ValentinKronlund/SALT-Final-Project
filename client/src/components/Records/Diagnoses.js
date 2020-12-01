@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import UserContext from "../../contexts/UserContext.js";
 
+import "./styles/diagnoses.css";
+
 export default function Diagnoses() {
 	const userInfo = useContext(UserContext).userInfo;
 	const setUserInfo = useContext(UserContext).setUserInfo;
@@ -15,11 +17,19 @@ export default function Diagnoses() {
 							<p className="diagnose-severity">{diagnose.severity}</p>
 							<p className="diagnose-doctor">{diagnose.doctor}</p>
 						</div>
-						<p className="diagnose-description">{diagnose.description}</p>
-						<p className="diagnose-notes">{diagnose.notes}</p>
-						<a className="diagnose-link" href={diagnose.info} target="_blank">
-							Read more about this diagnose
-						</a>
+						<div className="diagnose-body">
+							<p className="desc">Description:</p>
+							<p className="diagnose-description">{diagnose.description}</p>
+						</div>
+						<div className="diagnose-post-body">
+							<p className="desc">Notes:</p>
+							<p className="diagnose-notes">{diagnose.notes}</p>
+						</div>
+						<div className="diagnose-footer">
+							<a className="diagnose-link fs-medium" href={diagnose.info} target="_blank">
+								Read more about this diagnose
+							</a>
+						</div>
 					</div>
 				);
 			});
