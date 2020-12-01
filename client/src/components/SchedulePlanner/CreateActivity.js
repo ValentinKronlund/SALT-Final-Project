@@ -4,6 +4,8 @@ import Context from '../../contexts/Context';
 
 import '../../styles/createActivity.css';
 
+import updateUser from '../../hooks/updateUser';
+
 export default function CreateActivity({ toggleIsHidden }) {
   const updateActivitiesArray = useContext(UpdateAtivitiesContext);
   const ActivitiesArray = useContext(ActivitiesContext);
@@ -14,14 +16,15 @@ export default function CreateActivity({ toggleIsHidden }) {
   const [Time, updateTime] = useState('');
 
   const addActivity = () => {
-    const fetchUrl = `http://localhost:1337/api/mongoDB/?firstName=${user.userInfo.firstName}`;
-    const newArray = ActivitiesArray;
-
     const newActivity = {
-      Activity: Activity,
-      Description: Description,
-      Time: Time,
+      Activity,
+      Description,
+      Time,
     };
+
+    const newArray = ActivitiesArray;
+    newArray.push(newActivity);
+    updateActivitiesArray(newArray);
 
     const requestOptions = {
       method: 'PUT',
@@ -29,11 +32,14 @@ export default function CreateActivity({ toggleIsHidden }) {
       body: JSON.stringify({ schedule: newArray }),
     };
 
-    newArray.push(newActivity);
-    updateActivitiesArray(newArray);
-
-		fetch(fetchUrl, requestOptions);
-		toggleIsHidden(false);
+    fetch(`http://localhost:1337/api/mongoDB/?firstName=${user.userInfo.firstName}`, requestOptions)
+      .then( async (data) => {
+        console.log('--- data ---\n', data);
+        toggleIsHidden(true);
+        const fetchUser = await updateUser();
+        console.log('--- fetchUser ---\n', fetchUser);
+        user.setUserInfo(fetchUser);
+    });
   };
 
   return (

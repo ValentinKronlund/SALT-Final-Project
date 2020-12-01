@@ -7,8 +7,8 @@ import CreateUser from "./CreateUser/CreateUser";
 import Splash from "./Splash/Splash";
 import Login from "./Login/Login";
 import Chat from "./Chat/Chat";
-import SchedulePlanner from "./schedulePlanner/SchedulePlanner";
-import CreateActivity from "./schedulePlanner/CreateActivity";
+import SchedulePlanner from "./SchedulePlanner/SchedulePlanner";
+import CreateActivity from "./SchedulePlanner/CreateActivity";
 import useLocalStorage from "../hooks/useLocalStorage.js";
 
 export const ActivitiesContext = React.createContext();
