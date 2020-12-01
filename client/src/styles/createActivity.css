@@ -17,7 +17,11 @@ input:focus, textarea:focus, select:focus{
 
 .input-field[type=text] {
   width: 80%;
-  height: 20px;
+  height: 25px;
+}
+
+.date-time-container {
+  margin: 0 20px;
 }
 
 .top-input-underline {
@@ -38,11 +42,16 @@ input:focus, textarea:focus, select:focus{
 }
 
 .add-act {
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+
   cursor: pointer;
 
-  background-color: #18DCFF;
+  color: #E7F5E7;
+  background-color: #00B3D3;
 }
-.add-act:hover {
-  background-color: #c1f6ff;
 
+.add-act:hover {
+  background-color: #0088A0;
 }

@@ -39,14 +39,26 @@ export default function Activity({ Activity, Description, Time, deleted, updateD
 	};
 
 	return (
-		<div className="activity">
-			<p className="activity-header">{Activity}</p>
-			<p>{Description}</p>
-			<p>{Time}</p>
+		<div className="activity-container">
+
+			<div className="time-text">
+				<p>{Time}</p>
+			</div>
+
+			<div className="activity-text">
+				<p>{Activity}</p>
+			</div>
+
+			<div className="description-text">
+				<p>{Description}</p>
+			</div>
+
+			<div className="button-container">
+			<button className="buttons">Mark as done</button>
 			<button className="buttons" onClick={removeActivity}>
 				Delete
 			</button>
-			<button className="buttons">Mark as done</button>
+			</div>
 		</div>
 	);
 }
