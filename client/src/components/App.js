@@ -7,8 +7,10 @@ import CreateUser from "./CreateUser/CreateUser";
 import Splash from "./Splash/Splash";
 import Login from "./Login/Login";
 import Chat from "./Chat/Chat";
+import Records from "./Records/Records";
 import SchedulePlanner from "./SchedulePlanner/SchedulePlanner";
 import CreateActivity from "./SchedulePlanner/CreateActivity";
+
 import useLocalStorage from "../hooks/useLocalStorage.js";
 
 export const ActivitiesContext = React.createContext();
@@ -27,12 +29,12 @@ function App() {
 							{userInfo ? <Redirect to="/home" /> : <Redirect to="/login" />}
 						</Route>
 
-						{/* 	<Route exact path="/home">
-							{userInfo ? <Splash /> : <Redirect to="/login" />}
-						</Route> */}
-
 						<Route exact path="/chat">
 							{userInfo ? <Chat /> : <Redirect to="/login" />}
+						</Route>
+
+						<Route exact path="/records">
+							{userInfo ? <Records /> : <Redirect to="/login" />}
 						</Route>
 
 						<Route exact path="/login">

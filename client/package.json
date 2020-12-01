@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@iconify/icons-bx": "^1.0.5",
+    "@iconify/icons-fa-solid": "^1.1.0",
     "@iconify/react": "^1.1.3"
   }
 }

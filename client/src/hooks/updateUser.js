@@ -12,7 +12,7 @@ export default async function updateUser() {
 				return fetchedUser;
 			})
 			.catch((err) => {
-				console.log("Error while logging in: ", err.message);
+				console.log("Error can't fetch user, please re-login: ", err.message);
 			});
 	}
 

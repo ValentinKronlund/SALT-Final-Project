@@ -42,37 +42,37 @@ const Splash = () => {
 							{contactsArr.map((contact, i) => {
 								try {
 									const latestReceived = usersContacts[contact].messages[0];
-								return (
-									<div className="message-container" key={i}>
-										<div className="message-icon-and-contact">
-											<Icon
-												icon={
-													latestReceived
-														? latestReceived.read
-															? bxMessageCheck
-															: bxMessageDetail
-														: null
-												}
-												style={
-													latestReceived
-														? latestReceived.read
-															? { color: "#17A744", fontSize: "24px" }
-															: { color: "#00B3D3", fontSize: "24px" }
-														: null
-												}
-											/>
-											<p className="contact">{`${usersContacts[contact].firstName} ${usersContacts[contact].lastName}`}</p>
+									return (
+										<div className="message-container" key={i}>
+											<div className="message-icon-and-contact">
+												<Icon
+													icon={
+														latestReceived
+															? latestReceived.read
+																? bxMessageCheck
+																: bxMessageDetail
+															: null
+													}
+													style={
+														latestReceived
+															? latestReceived.read
+																? { color: "#17A744", fontSize: "24px" }
+																: { color: "#00B3D3", fontSize: "24px" }
+															: null
+													}
+												/>
+												<p className="contact">{`${usersContacts[contact].firstName} ${usersContacts[contact].lastName}`}</p>
+											</div>
+											<div className="message-text-container">
+												<p className="message-text">
+													{latestReceived ? latestReceived.message : null}
+												</p>
+											</div>
 										</div>
-										<div className="message-text-container">
-											<p className="message-text">
-												{latestReceived ? latestReceived.message : null}
-											</p>
-										</div>
-									</div>
-								);
-							} catch {
-								console.log("Oh no")
-							}
+									);
+								} catch {
+									console.log("Oh no");
+								}
 							})}
 						</div>
 						<Link className="splash-content-link" to="/chat">
@@ -110,13 +110,16 @@ const Splash = () => {
 						<div className="all-recommendations">
 							<div className="recommendation">
 								<p>We see that you haven't yet gotten tested for Covid.</p>
-								<Link className="inner-splash-content-link" to="/home">
+								<a
+									href="https://www.1177.se/Stockholm/sjukdomar--besvar/lungor-och-luftvagar/inflammation-och-infektion-ilungor-och-luftror/om-covid-19--coronavirus/lamna-prov-och-fa-provsvar-om-covid-19/lamna-prov-for-covid-19/"
+									className="inner-splash-content-link"
+									to="/home">
 									<p>Click here to find your nearest test hub</p>
-								</Link>
+								</a>
 							</div>
 							<div className="recommendation">
 								<p>It has been 287 days since you last dentist appointment.</p>
-								<Link className="inner-splash-content-link" to="/home">
+								<Link className="inner-splash-content-link" to="/appointments">
 									<p>Click here to book an appointment</p>
 								</Link>
 							</div>

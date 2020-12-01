@@ -24,8 +24,7 @@ const Login = () => {
 			.then((res) => res.data)
 			.then((data) => {
 				const fetchedUser = data.filter(
-					(user) =>
-						user.username.toLowerCase() === inputUsername.toLowerCase()
+					(user) => user.username.toLowerCase() === inputUsername.toLowerCase()
 				)[0];
 
 				if (fetchedUser) {
@@ -51,7 +50,7 @@ const Login = () => {
 		setLoginErrors("");
 		setIsLoggingIn(true);
 
-		console.log("Logging in")
+		console.log("Logging in");
 
 		const requestOptions = {
 			method: "POST",
@@ -59,18 +58,21 @@ const Login = () => {
 			body: JSON.stringify({ password: inputPassword }),
 		};
 
-		const check = await fetch(`http://localhost:1337/api/mongoDB/userLogin/?firstName=${inputUsername}`, requestOptions);
-		console.log(check.status)
+		const check = await fetch(
+			`http://localhost:1337/api/mongoDB/userLogin/?username=${inputUsername}`,
+			requestOptions
+		);
+		console.log(check.status);
 
 		if (check.status === 205) {
-			console.log("Success in Login")
+			console.log("Success in Login");
 			submitLoginForm();
 		} else {
 			setLoginErrors("Invalid username or password!");
 			setIsLoggingIn(false);
 			setInputUsername("");
 			setInputPassword("");
-			console.log("Failed in Login")
+			console.log("Failed in Login");
 		}
 	};
 
