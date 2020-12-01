@@ -75,108 +75,104 @@ router.put("/messages", async (req, res) => {
 
 	const rawData = await mongo.db();
 
-	const sender = await queries.getUser(rawData, req.body.from);
-	const senderName = sender[0].username;
+	let senderArr = await queries.getUser(rawData, req.body.from);
+	let sender = senderArr[0];
 
-	const recipient = await queries.getUser(rawData, req.body.to);
-	const recipientName = recipient[0].username;
+	let recipientArr = await queries.getUser(rawData, req.body.to);
+	let recipient = recipientArr[0];
 
-	// console.log(req.body, "<--- req.body");
+	if (recipient == null) {
+		console.log("No user with that username exists");
+		res.send("ERROR: No user with that username exists").status(400).end();
+	} else {
+		console.log(`
+			FROMID: ${sender.id}
+			FROM: ${sender.username}.
+			TO: ${recipient.username}
+			MESSAGE: ${req.body.messageObj.message}
 
-	// console.log(sender, "<--- Sender");
-	// console.log(recipient, "<--- Recipient");
-	// console.log(recipientName, "<-- rec name");
-
-	console.log(`
-		FROM: ${senderName}.
-		TO: ${recipientName}
-		MESSAGE: ${req.body.messageObj.message}
-	
-	`);
-
-	console.log(sender[0].messages[recipientName], "<-- sender - correspondance");
-	if (!sender[0].messages[recipientName]) {
-		const generateCorrespondance = {
-			...sender[0].messages,
-			[recipientName]: {
-				sent: [],
-				received: [],
-			},
-		};
-
-		await rawData.updateOne(
-			{ username: senderName },
-			{ $set: { messages: generateCorrespondance } }
-		);
+		`);
 	}
 
-	const senderNewMessages = {
-		...sender[0].messages,
-		[recipientName]: {
-			sent: [
+	// IF conversation with recipient does not exist, create.
+	const generateConvo = async () => {
+		if (!sender.messages[recipient.id] || !recipient.messages[sender.id]) {
+			const newConversationS = {
+				...sender.messages,
+				[recipient.id]: {
+					username: recipient.username,
+					firstName: recipient.firstName,
+					lastName: recipient.lastName,
+					messages: [],
+				},
+			};
+
+			const newConversationR = {
+				...recipient.messages,
+				[sender.id]: {
+					username: sender.username,
+					firstName: sender.firstName,
+					lastName: sender.lastName,
+					messages: [],
+				},
+			};
+
+			await rawData.updateOne({ id: sender.id }, { $set: { messages: newConversationS } });
+			await rawData.updateOne({ id: recipient.id }, { $set: { messages: newConversationR } });
+
+			senderArr = await queries.getUser(rawData, req.body.from);
+			sender = senderArr[0];
+			recipientArr = await queries.getUser(rawData, req.body.to);
+			recipient = recipientArr[0];
+		}
+		return;
+	};
+	await generateConvo();
+
+	const newMessageForSender = {
+		...sender.messages,
+		[recipient.id]: {
+			...sender.messages[recipient.id],
+			messages: [
+				...sender.messages[recipient.id].messages,
 				{
 					timestamp: req.body.messageObj.timestamp,
+					fromId: sender.id,
+					from: sender.username,
+					toId: recipient.id,
+					to: recipient.username,
 					message: req.body.messageObj.message,
-					read: false,
 				},
-				...(sender[0].messages[recipientName].sent === undefined
-					? []
-					: sender[0].messages[recipientName].sent),
-			],
-			received: [
-				...(sender[0].messages[recipientName].received === undefined
-					? []
-					: sender[0].messages[recipientName].received),
 			],
 		},
 	};
 
-	console.log(recipient[0].messages[senderName], "<-- recipient - correspondance");
-	if (!recipient[0].messages[senderName]) {
-		const generateCorrespondance = {
-			...recipient[0].messages,
-			[senderName]: {
-				sent: [],
-				received: [],
-			},
-		};
-
-		await rawData.updateOne(
-			{ username: recipientName },
-			{ $set: { messages: generateCorrespondance } }
-		);
-	}
-
-	const recipientNewMessages = {
-		...recipient[0].messages,
-		[senderName]: {
-			sent: [
-				...(recipient[0].messages[senderName].sent === undefined
-					? []
-					: recipient[0].messages[senderName].sent),
-			],
-			received: [
+	const newMessageForRecipient = {
+		...recipient.messages,
+		[sender.id]: {
+			...recipient.messages[sender.id],
+			messages: [
+				...recipient.messages[sender.id].messages,
 				{
 					timestamp: req.body.messageObj.timestamp,
+					fromId: sender.id,
+					from: sender.username,
+					toId: recipient.id,
+					to: recipient.username,
 					message: req.body.messageObj.message,
-					read: false,
 				},
-				...(recipient[0].messages[senderName].received === undefined
-					? []
-					: recipient[0].messages[senderName].received),
 			],
 		},
 	};
-	// console.log(recipientNewMessages, "<-- recipientNewMessages");
 
 	const updateSender = await rawData.updateOne(
-		{ username: senderName },
-		{ $set: { messages: senderNewMessages } }
+		{ id: sender.id },
+		{ $set: { messages: newMessageForSender } }
 	);
 
 	const updateRecipient = await rawData.updateOne(
-		{ username: recipientName },
-		{ $set: { messages: recipientNewMessages } }
+		{ id: recipient.id },
+		{ $set: { messages: newMessageForRecipient } }
 	);
 
 	const updates = [updateSender, updateRecipient];
@@ -206,37 +202,7 @@ router.post("/", async (req, res) => {
 			"city": req.body.address.city,
 			"postalcode": req.body.address.postalcode,
 		},
-		"messages": {
-			"Tronald": {
-				"sent": [
-					{
-						"timestamp": Date.now(),
-						"message":
-							"Stop the vote! Mail-in voting is fraudulent. This is going to be a fraud like you’ve never seen",
-						"read": false,
-					},
-					{
-						"timestamp": Date.now(),
-						"message": "Despite the constant negative press covfefe",
-						"read": true,
-					},
-				],
-				"received": [
-					{
-						"timestamp": Date.now(),
-						"message":
-							"Twitter is sending out totally false “Trends” that have absolutely nothing to do with what is really trending in the world. They make it up, and only negative “stuff”. Same thing will happen to Twitter as is happening to @FoxNews daytime. Also, big Conservative discrimination!",
-						"read": false,
-					},
-					{
-						"timestamp": Date.now(),
-						"message":
-							"A total FRAUD. Statehouse Republicans, proud, strong and honest, will never let this travesty stand!",
-						"read": true,
-					},
-				],
-			},
-		},
+		"messages": {},
 		"schedule": [
 			{
 				Activity: "Walk Doggo",
@@ -272,7 +238,7 @@ router.post('/userLogin', async (req, res) => {
 router.delete("/", async (req, res) => {
 	const collection = await mongo.db();
 	try {
-		collection.deleteOne({ "firstName": req.query.name });
+		collection.deleteOne({ "id": req.query.id });
 	} catch (e) {
 		res.json(`ERROR: ${e}`).status(500).end();
 	}

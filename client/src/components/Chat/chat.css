@@ -43,7 +43,7 @@
     overflow: hidden;
 }
 
-.corr-name {
+.contact-name {
     grid-column: 1;
     grid-row: 1;
     align-self: baseline;
@@ -92,24 +92,48 @@
     border: 2px solid var(--dark-blue);
     border-radius: 1.5em;
     background-color: var(--main-white);
+    overflow: hidden;
 }
 
 .chat-feed {
-    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow-y: scroll;
 }
 
-.message {
-    display: block;
-    min-height: 4em;
+.msg-container {
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.5em auto;
+    min-height: 6em;
+    max-height: 7em;
     width: 45%;
     margin: .5em 1em;
-    padding: .5em;
+    padding: .5em .8em;
 
     font-size: 1.4em;
 
     border: 1px solid var(--darkest-blue);
     border-radius: 1em;
     background-color: var(--main-gray);
+}
+
+.message-from {
+    grid-column: 1;
+    color: var(--alt-transparent);
+    font-size: .8em;
+}
+
+.message-time {
+    grid-column: 2;
+    color: var(--alt-transparent);
+    font-size: .8em;
+}
+
+.message {
+    grid-column: 1/3;
+    grid-row: 2;
 }
 
 .msg-input {
@@ -143,4 +167,16 @@
     border: none;
     border-radius: 1em;
     background-color: var(--darkest-mint);
+}
+
+.sent {
+    grid-column: 1/3;
+    justify-self: flex-end;
+    
+    background-color: var(--lightest-blue);
+}
+
+.received {
+    grid-column: 1/3;
+    background-color: var(--lightest-mint);
 }

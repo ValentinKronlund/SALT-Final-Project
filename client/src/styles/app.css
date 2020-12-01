@@ -24,6 +24,7 @@
     --main-black: #161616;
     --main-gray: #e6e6e6;
     --main-transparent: #ffffffa5;
+    --alt-transparent: #5c5c5ca5;
 
     --alt-shadow: #363636cc;
     --main-shadow: #36363650;
@@ -52,8 +53,20 @@
     text-align: center;
 }
 
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
 .text-border-bottom {
     border-bottom: 1px solid var(--main-black);
+}
+
+.alt-text-border-bottom {
+    border-bottom: 1px solid var(--alt-transparent);
 }
 
 .main-blue {

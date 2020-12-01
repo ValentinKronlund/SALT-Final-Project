@@ -1,39 +1,46 @@
-import React, { useState, useContext } from 'react';
-import { ActivitiesContext, UpdateAtivitiesContext } from '../App';
-import Context from '../../contexts/Context';
+import React, { useState, useContext } from "react";
+import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
+import userContext from "../../contexts/UserContext";
 
-import '../../styles/createActivity.css';
+import "../../styles/createActivity.css";
+
+import updateUser from "../../hooks/updateUser";
 
 export default function CreateActivity({ toggleIsHidden }) {
   const updateActivitiesArray = useContext(UpdateAtivitiesContext);
   const ActivitiesArray = useContext(ActivitiesContext);
-  const user = useContext(Context);
+  const user = useContext(userContext);
 
-  const [Description, updateDescription] = useState('');
-  const [Activity, updateActivity] = useState('');
-  const [Time, updateTime] = useState('');
+  const [Description, updateDescription] = useState("");
+  const [Activity, updateActivity] = useState("");
+  const [Time, updateTime] = useState("");
 
   const addActivity = () => {
     const fetchUrl = `http://localhost:1337/api/mongoDB/?firstName=${user.userInfo.firstName}`;
-    const newArray = ActivitiesArray;
 
     const newActivity = {
-      Activity: Activity,
-      Description: Description,
-      Time: Time,
+      Activity,
+      Description,
+      Time,
     };
 
-    const requestOptions = {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ schedule: newArray }),
-    };
-
+    const newArray = ActivitiesArray;
     newArray.push(newActivity);
     updateActivitiesArray(newArray);
 
-		fetch(fetchUrl, requestOptions);
-		toggleIsHidden(false);
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ schedule: newArray }),
+    };
+
+    fetch(fetchUrl, requestOptions)
+      .then(async () => {
+        const fetchUser = await updateUser();
+        console.log('--- fetchUser ---\n', fetchUser);
+        user.setUserInfo(fetchUser);
+        toggleIsHidden(true);
+      });
   };
 
   return (
