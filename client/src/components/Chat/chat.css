@@ -43,7 +43,7 @@
     overflow: hidden;
 }
 
-.corr-name {
+.contact-name {
     grid-column: 1;
     grid-row: 1;
     align-self: baseline;
@@ -92,6 +92,7 @@
     border: 2px solid var(--dark-blue);
     border-radius: 1.5em;
     background-color: var(--main-white);
+    overflow: hidden;
 }
 
 .chat-feed {

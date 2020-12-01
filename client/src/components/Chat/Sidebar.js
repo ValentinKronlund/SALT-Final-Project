@@ -16,7 +16,7 @@ export default function Sidebar({
 		const contactIds = Object.keys(userInfo.messages);
 		const contactList = [];
 
-		contactIds.forEach((contactId, index) => {
+		contactIds.forEach((contactId) => {
 			const correlatedMessages = userInfo.messages[contactId].messages;
 			contactList.push(
 				<div
