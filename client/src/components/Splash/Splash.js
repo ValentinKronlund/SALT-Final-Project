@@ -40,7 +40,8 @@ const Splash = () => {
 						<h4 className="container-inner-title align-mid text-border-bottom">Inbox</h4>
 						<div className="inbox-message-area">
 							{contactsArr.map((contact, i) => {
-								const latestReceived = usersContacts[contact].messages[0];
+								try {
+									const latestReceived = usersContacts[contact].messages[0];
 								return (
 									<div className="message-container" key={i}>
 										<div className="message-icon-and-contact">
@@ -69,6 +70,9 @@ const Splash = () => {
 										</div>
 									</div>
 								);
+							} catch {
+								console.log("Oh no")
+							}
 							})}
 						</div>
 						<Link className="splash-content-link" to="/chat">

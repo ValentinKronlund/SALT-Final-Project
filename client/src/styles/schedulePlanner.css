@@ -1,46 +1,131 @@
-.activity{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 1%;
-    align-items: center;
+button {
+    transition: all 0.2s;
+}
+
+.activity-container{
+    display: grid;
+    grid-template-columns: [first-col] 20% [second-col] 40% [third-col] 40% [fourth-col];
+    grid-template-rows: [first-row] auto [second-row] auto [third-row] auto [fourth-row];
+    
+    overflow: hidden;
+    
     font-size: 2em;
+    margin: 10px 25% 10px 25%;
+
+    border-radius: 0.4em;
     border: 2px solid #0088A0;
-    border-radius: 1em;
-    background-color: #fff;
+    background-color: #E7F5E7;
+
+}
+
+.activity-text {
+    grid-column-start: second-col;
+    grid-column-end: fourth-col;
+    grid-row-start: first-row;
+    grid-row-end: second-row;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #c5e9c5;
+    border-bottom: solid 2px #1B1919;
+
+    font-size: 1.2em;
+    font-weight: 500;
+
+
+}
+
+.description-text {
+    grid-column-start: second-col;
+    grid-column-end: fourth-col;
+    grid-row-start: second-row;
+    grid-row-end: third-row;
+    
+    padding: 5px 10px;
+
+}
+
+.time-text {
+    grid-column-start: first-col;
+    grid-column-end: second-col;
+    grid-row-start: first-row;
+    grid-row-end: fourth-row;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 500;
+    font-size: 1.5em;
+    
+
+    background-color: #9ee89e;
+}
+
+.button-container {
+    grid-column-start: second-col;
+    grid-column-end: fourth-col;
+    grid-row-start: third-row;
+    grid-row-end: fourth-row;
+
 }
 
 .buttons {
-    margin: 5px 0 2px 0;
+    height: 30px;
+    width: 100px;
+
+    float: right;
+    cursor: pointer;
+
+    margin: 10px 20px 10px 0;
+    border: none;
     border-radius: 6px;
-    width: 20%;
-    height: 2em;
 }
 
-.buttons:hover {
-    transform: scale(1.1);
+.buttons:first-of-type {
+    background-color: #A8F3BF;
 }
+.buttons:last-of-type {
+    background-color: #FFCECF;
+}
+
+.buttons:first-of-type:hover {
+    background-color: #4EE77E;
+    color: #E7F5E7;
+}
+
+.buttons:last-of-type:hover {
+    background-color: #FF5C5D;
+    color: #E7F5E7;
+}
+
 
 .add-activity-button {
-    margin-left: 47%;
-    margin-top: 2%;
+    top: 110px;
+    left: 20px;
+    position: absolute;
 
     padding: 12px;
-    border-radius: 6px;
+    border-radius: 4px;
     font-size: 33px;
+
+    color: #E7F5E7;
+    background-color: #00B3D3;
+
 }
 
 .add-activity-button:hover {
-    transform: scale(1.1);
+    background-color: #0088A0;
 }
 
 .add-window-container {
     position: absolute;
-
-    width: 400px;
-    height: 280px;
     z-index: 10;
+
+    width: 450px;
+    height: 280px;
 
     font-family: 'poppins';
 

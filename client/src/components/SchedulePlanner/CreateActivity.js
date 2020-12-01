@@ -36,10 +36,10 @@ export default function CreateActivity({ toggleIsHidden }) {
 
     fetch(fetchUrl, requestOptions)
       .then(async () => {
+        toggleIsHidden(true);
         const fetchUser = await updateUser();
         console.log('--- fetchUser ---\n', fetchUser);
         user.setUserInfo(fetchUser);
-        toggleIsHidden(true);
       });
   };
 
@@ -67,15 +67,24 @@ export default function CreateActivity({ toggleIsHidden }) {
         required
       />
       <br></br>
-      <input
-        type="time"
-        className="input-field"
-        name="time"
-        placeholder="Time"
-        value={Time}
-        onChange={(e) => updateTime(e.currentTarget.value)}
-        required
-      />
+      <div className="date-time-container">
+        <input
+          type="time"
+          className="input-field"
+          name="time"
+          value={Time}
+          onChange={(e) => updateTime(e.currentTarget.value)}
+          required
+        />
+        <input
+          type="date"
+          className="input-field"
+          name="date"
+          value={Time}
+          onChange={(e) => updateTime(e.currentTarget.value)}
+          required
+        />
+      </div>
       <br></br>
       <button
         className="add-window-button add-act"
