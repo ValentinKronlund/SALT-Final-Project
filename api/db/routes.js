@@ -4,7 +4,7 @@ const router = express.Router();
 const mongo = require("./mongo");
 const queries = require("./queries");
 const { v4: uuidv4 } = require("uuid");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 router.get("/", async (req, res) => {
 	const rawData = await mongo.db();
@@ -181,9 +181,7 @@ router.put("/messages", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-
 	const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
 
 	const rawData = await mongo.db();
 	let data;
@@ -307,20 +305,20 @@ router.post("/", async (req, res) => {
 	res.json(data).status(200).end();
 });
 
-router.post('/userLogin', async (req, res) => {
+router.post("/userLogin", async (req, res) => {
 	const rawData = await mongo.db();
-	let user = await queries.getPerson(rawData, req.query.firstName);
+	let user = await queries.getUser(rawData, req.query.username);
 
 	try {
 		if (await bcrypt.compare(req.body.password, user[0].password)) {
-			res.status(205).send("Success in routes")
+			res.status(205).send("Success in routes");
 		} else {
-			res.status(500).send("Not allowed in routes")
+			res.status(500).send("Not allowed in routes");
 		}
 	} catch {
-		res.status(500).send("Oh no in routes")
+		res.status(500).send("Oh no in routes");
 	}
-})
+});
 
 router.delete("/", async (req, res) => {
 	const collection = await mongo.db();

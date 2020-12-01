@@ -42,37 +42,37 @@ const Splash = () => {
 							{contactsArr.map((contact, i) => {
 								try {
 									const latestReceived = usersContacts[contact].messages[0];
-								return (
-									<div className="message-container" key={i}>
-										<div className="message-icon-and-contact">
-											<Icon
-												icon={
-													latestReceived
-														? latestReceived.read
-															? bxMessageCheck
-															: bxMessageDetail
-														: null
-												}
-												style={
-													latestReceived
-														? latestReceived.read
-															? { color: "#17A744", fontSize: "24px" }
-															: { color: "#00B3D3", fontSize: "24px" }
-														: null
-												}
-											/>
-											<p className="contact">{`${usersContacts[contact].firstName} ${usersContacts[contact].lastName}`}</p>
+									return (
+										<div className="message-container" key={i}>
+											<div className="message-icon-and-contact">
+												<Icon
+													icon={
+														latestReceived
+															? latestReceived.read
+																? bxMessageCheck
+																: bxMessageDetail
+															: null
+													}
+													style={
+														latestReceived
+															? latestReceived.read
+																? { color: "#17A744", fontSize: "24px" }
+																: { color: "#00B3D3", fontSize: "24px" }
+															: null
+													}
+												/>
+												<p className="contact">{`${usersContacts[contact].firstName} ${usersContacts[contact].lastName}`}</p>
+											</div>
+											<div className="message-text-container">
+												<p className="message-text">
+													{latestReceived ? latestReceived.message : null}
+												</p>
+											</div>
 										</div>
-										<div className="message-text-container">
-											<p className="message-text">
-												{latestReceived ? latestReceived.message : null}
-											</p>
-										</div>
-									</div>
-								);
-							} catch {
-								console.log("Oh no")
-							}
+									);
+								} catch {
+									console.log("Oh no");
+								}
 							})}
 						</div>
 						<Link className="splash-content-link" to="/chat">
