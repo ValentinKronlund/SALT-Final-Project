@@ -14,6 +14,7 @@ export default function CreateActivity({ toggleIsHidden }) {
   const [Description, updateDescription] = useState("");
   const [Activity, updateActivity] = useState("");
   const [Time, updateTime] = useState("");
+  const [Date, updateDate] = useState("");
 
   const addActivity = () => {
     const fetchUrl = `http://localhost:1337/api/mongoDB/?firstName=${user.userInfo.firstName}`;
@@ -22,6 +23,7 @@ export default function CreateActivity({ toggleIsHidden }) {
       Activity,
       Description,
       Time,
+      Date,
     };
 
     const newArray = ActivitiesArray;
@@ -80,8 +82,8 @@ export default function CreateActivity({ toggleIsHidden }) {
           type="date"
           className="input-field"
           name="date"
-          value={Time}
-          onChange={(e) => updateTime(e.currentTarget.value)}
+          value={Date}
+          onChange={(e) => updateDate(e.currentTarget.value)}
           required
         />
       </div>

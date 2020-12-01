@@ -21,11 +21,7 @@ export default function SchedulePlanner() {
 
   const [deleted, updateDeleted] = useState(false);
   const [isHidden, toggleIsHidden] = useState(true);
-  const [position, setPosition] = useState({ x: 300, y: 300 });
-
-  const goToCreatePage = () => {
-    history.push("/create-activity");
-  };
+  const [position, setPosition] = useState({ x: 20, y: 480 });
 
   useEffect(() => {
     console.log("I am going to update ActivitiesArray");
@@ -43,8 +39,10 @@ export default function SchedulePlanner() {
           Activity={act.Activity}
           Description={act.Description}
           Time={act.Time}
+          userDate={act.Date}
           deleted={deleted}
           updateDeleted={updateDeleted}
+          
         />
       ));
     }
