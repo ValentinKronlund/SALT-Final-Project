@@ -19,9 +19,6 @@ const Login = () => {
 	const history = useHistory();
 
 	const submitLoginForm = () => {
-		setLoginErrors("");
-		setIsLoggingIn(true);
-
 		axios
 			.get("http://localhost:1337/api/mongoDB")
 			.then((res) => res.data)
@@ -44,13 +41,15 @@ const Login = () => {
 				setLoginErrors("Invalid username or password!");
 			});
 
-		setIsLoggingIn(false);
+		/* setIsLoggingIn(false);
 		setInputUsername("");
-		setInputPassword("");
+		setInputPassword(""); */
 	};
 
 	const VerifyUser = async (e) => {
 		e.preventDefault();
+		setLoginErrors("");
+		setIsLoggingIn(true);
 
 		console.log("Logging in")
 
@@ -67,6 +66,10 @@ const Login = () => {
 			console.log("Success in Login")
 			submitLoginForm();
 		} else {
+			setLoginErrors("Invalid username or password!");
+			setIsLoggingIn(false);
+			setInputUsername("");
+			setInputPassword("");
 			console.log("Failed in Login")
 		}
 	};
