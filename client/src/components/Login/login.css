@@ -87,3 +87,9 @@
     color: var(--main-white);
     background-color: var(--main-blue);
 }
+
+.error {
+    font-size: 2em;
+    font-weight: 500;
+    color: #CE494A;
+}

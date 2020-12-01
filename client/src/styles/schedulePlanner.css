@@ -2,7 +2,7 @@ button {
     transition: all 0.2s;
 }
 
-.activity-container{
+.activity {
     display: grid;
     grid-template-columns: [first-col] 20% [second-col] 30% [third-col] 30% [fourth-col];
     grid-template-rows: [first-row] auto [second-row] auto [third-row] auto [fourth-row];
@@ -13,6 +13,13 @@ button {
 
     box-shadow: 2px 2px 4px #929292;
     background-color: #E7F5E7;
+}
+
+.activities-container {
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
 }
 
 .activity-label {

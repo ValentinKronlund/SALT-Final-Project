@@ -51,7 +51,7 @@ export default function Activity({ Activity, Description, Time, userDate, delete
 	return (
 		<div className="activity-label">
 			<p className="activity-date">{userDate ? formatDate() : null}</p>
-			<div className="activity-container">
+			<div className="activity">
 				<div className="time-text">
 					<p>{Time}</p>
 				</div>

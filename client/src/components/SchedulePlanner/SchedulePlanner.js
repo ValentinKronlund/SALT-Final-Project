@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import Context from "../../contexts/UserContext";
 import { ActivitiesContext, UpdateAtivitiesContext } from "../App";
 import { v4 as uuid } from "uuid";
@@ -13,7 +12,6 @@ import AddActivity from "./AddActivity";
 import "../../styles/schedulePlanner.css";
 
 export default function SchedulePlanner() {
-  const history = useHistory();
 
   let ActivitiesArray = useContext(ActivitiesContext);
   const updateActivitiesArray = useContext(UpdateAtivitiesContext);
@@ -60,7 +58,7 @@ export default function SchedulePlanner() {
           setPosition={setPosition}
         />
       )}
-      <div className="">{mapActivities()}</div>
+      <div className="activities-container">{mapActivities()}</div>
       <button
         className="add-activity-button"
         onClick={() => toggleIsHidden(!isHidden)}
