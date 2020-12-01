@@ -8,7 +8,7 @@ import Background from "../static/Background";
 import Header from "../static/Header";
 import Footer from "../static/Footer";
 
-import SchedulePreview from "../schedulePlanner/SchedulePreview";
+import SchedulePreview from "../SchedulePlanner/SchedulePreview";
 
 import bxMessageDetail from "@iconify/icons-bx/bx-message-detail";
 import bxMessageCheck from "@iconify/icons-bx/bx-message-check";

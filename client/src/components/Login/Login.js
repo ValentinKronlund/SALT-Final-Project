@@ -18,8 +18,7 @@ const Login = () => {
 	const [loginErrors, setLoginErrors] = useState("");
 	const history = useHistory();
 
-	const submitLoginForm = (e) => {
-		e.preventDefault();
+	const submitLoginForm = () => {
 		setLoginErrors("");
 		setIsLoggingIn(true);
 
@@ -29,8 +28,7 @@ const Login = () => {
 			.then((data) => {
 				const fetchedUser = data.filter(
 					(user) =>
-						user.username.toLowerCase() === inputUsername.toLowerCase() &&
-						user.password === inputPassword
+						user.username.toLowerCase() === inputUsername.toLowerCase()
 				)[0];
 
 				if (fetchedUser) {
@@ -51,6 +49,28 @@ const Login = () => {
 		setInputPassword("");
 	};
 
+	const VerifyUser = async (e) => {
+		e.preventDefault();
+
+		console.log("Logging in")
+
+		const requestOptions = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ password: inputPassword }),
+		};
+
+		const check = await fetch(`http://localhost:1337/api/mongoDB/userLogin/?firstName=${inputUsername}`, requestOptions);
+		console.log(check.status)
+
+		if (check.status === 205) {
+			console.log("Success in Login")
+			submitLoginForm();
+		} else {
+			console.log("Failed in Login")
+		}
+	};
+
 	return (
 		<>
 			<Header />
@@ -58,7 +78,7 @@ const Login = () => {
 			<section className="login-page">
 				<h2 className="login-welcome">Welcome, please sign in below</h2>
 				<div className="login-container">
-					<form className="login-form" onSubmit={(e) => submitLoginForm(e)}>
+					<form className="login-form" onSubmit={(e) => VerifyUser(e)}>
 						<p className="small-text error">{loginErrors === "" ? "" : loginErrors}</p>
 						<legend className="login-legend">{isLoggingIn ? "Logging In.." : "Login"}</legend>
 						<input

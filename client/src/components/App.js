@@ -10,6 +10,7 @@ import Chat from "./Chat/Chat";
 import Records from "./Records/Records";
 import SchedulePlanner from "./schedulePlanner/SchedulePlanner";
 import CreateActivity from "./schedulePlanner/CreateActivity";
+
 import useLocalStorage from "../hooks/useLocalStorage.js";
 
 export const ActivitiesContext = React.createContext();
