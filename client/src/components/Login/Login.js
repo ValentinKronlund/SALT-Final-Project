@@ -41,9 +41,9 @@ const Login = () => {
 				setLoginErrors("Invalid username or password!");
 			});
 
-		/* setIsLoggingIn(false);
+		setIsLoggingIn(false);
 		setInputUsername("");
-		setInputPassword(""); */
+		setInputPassword("");
 	};
 
 	const VerifyUser = async (e) => {

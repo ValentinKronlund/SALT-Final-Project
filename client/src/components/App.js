@@ -8,8 +8,9 @@ import Splash from "./Splash/Splash";
 import Login from "./Login/Login";
 import Chat from "./Chat/Chat";
 import Records from "./Records/Records";
-import SchedulePlanner from "./schedulePlanner/SchedulePlanner";
-import CreateActivity from "./schedulePlanner/CreateActivity";
+import SchedulePlanner from "./SchedulePlanner/SchedulePlanner";
+import CreateActivity from "./SchedulePlanner/CreateActivity";
+import Appointments from "./Appointments/Appointments";
 
 import useLocalStorage from "../hooks/useLocalStorage.js";
 
@@ -27,6 +28,10 @@ function App() {
 					<Switch>
 						<Route exact path="/">
 							{userInfo ? <Redirect to="/home" /> : <Redirect to="/login" />}
+						</Route>
+
+						<Route exact path="/appointments">
+							{userInfo ? <Appointments /> : <Redirect to="/login" />}
 						</Route>
 
 						<Route exact path="/chat">
