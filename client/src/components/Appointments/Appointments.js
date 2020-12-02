@@ -4,6 +4,8 @@ import Background from "../static/Background";
 import Header from "../static/Header";
 import Footer from "../static/Footer";
 
+import "./appointments.css";
+
 export default function Appointments() {
     return (
         <div>
