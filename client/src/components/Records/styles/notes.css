@@ -1,4 +1,4 @@
-.appointment {
+.note {
     display: grid;
     grid-template-rows: minmax(4em, 20%) auto;
     grid-row-gap: .5em;
@@ -15,7 +15,7 @@
     overflow: hidden;
 }
 
-.appointment-header {
+.note-header {
     grid-row: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -27,20 +27,20 @@
     background-color: var(--lightest-blue);
 }
 
-.appointment-title {
+.note-title {
     grid-column: 1;
     grid-row: 1;
     font-size: 1.2em;
     letter-spacing: 0.05em;
 }
 
-.appointment-for {
+.note-for {
     grid-column: 1;
     grid-row: 2;
     color: var(--alt-transparent);
 }
 
-.appointment-doctor {
+.note-doctor {
     grid-column: 2/3;
     grid-row: 1;
     text-align: right;
@@ -50,7 +50,7 @@
     color: var(--alt-transparent);
 }
 
-.appointment-date {
+.note-date {
     grid-column: 2/3;
     grid-row: 2;
     text-align: right;
@@ -60,7 +60,7 @@
     color: var(--alt-transparent);
 }
 
-.appointment-body {
+.note-body {
     grid-row: 2;
     display: grid;
     justify-content: left;
@@ -78,7 +78,7 @@
     overflow: auto;
 }
 
-.appointment-description {
+.note-description {
     letter-spacing: 0.05em;
     overflow-y: auto;
 }

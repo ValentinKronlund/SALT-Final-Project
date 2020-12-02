@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import UserContext from "../../contexts/UserContext.js";
-
 import "./styles/diagnoses.css";
 
 export default function Diagnoses() {

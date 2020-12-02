@@ -50,8 +50,34 @@
     grid-column: 1/4;
 }
 
-.appointments {
+.appointments-splash {
     grid-column: 4/10;
+}
+
+.appointment-splash {
+    width: 98%;
+
+    margin: 1em auto;
+    padding: 1em;
+
+    border-top: 2px solid var(--darkest-blue);
+    border-bottom: 2px solid var(--darkest-blue);
+    background-color: var(--main-gray);
+}
+
+.appointment-splash-title {
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+}
+
+.appointment-splash-date {
+    color: var(--alt-shadow);
+}
+
+.appointment-splash-description {
+    text-transform: capitalize;
+    font-size: 1.3em;
 }
 
 .recommendations {
@@ -119,31 +145,7 @@
     box-shadow: 0px 2px 8px var(--main-shadow);
 }
 
-.appointment {
-    width: 98%;
 
-    margin: 1em auto;
-    padding: 1em;
-
-    border-top: 2px solid var(--darkest-blue);
-    border-bottom: 2px solid var(--darkest-blue);
-    background-color: var(--main-gray);
-}
-
-.appointment-title {
-    font-size: 1.2em;
-    letter-spacing: 0.05em;
-    font-weight: 700;
-}
-
-.appointment-date {
-    color: var(--alt-shadow);
-}
-
-.appointment-description {
-    text-transform: capitalize;
-    font-size: 1.3em;
-}
 
 .recommendation {
     display: flex;
