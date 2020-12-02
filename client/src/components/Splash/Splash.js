@@ -78,27 +78,27 @@ const Splash = () => {
 						</Link>
 					</div>
 
-					<div className="appointments splash-content-container">
+					<div className="appointments-splash splash-content-container">
 						<h4 className="container-inner-title align-mid text-border-bottom">Appointments</h4>
 						<div className="appointments-entries-area">
-							<div className="appointment">
-								<p className="appointment-title">Quarterly check-up | St. Adams Hospital</p>
-								<p className="appointment-date">15:th of August at 14:30</p>
-								<p className="appointment-description">
+							<div className="appointment-splash">
+								<p className="appointment-splash-title">Quarterly check-up | St. Adams Hospital</p>
+								<p className="appointment-splash-date">15:th of August at 14:30</p>
+								<p className="appointment-splash-description">
 									this is really just filler text, nothing to see here folks, go on about your daily
 									struggle come on now stop reading i mean it stop please.
 								</p>
 							</div>
-							<div className="appointment">
-								<p className="appointment-title">Bloodtest results | St. Adams Hospital</p>
-								<p className="appointment-date">21:th of January at 14:30</p>
-								<p className="appointment-description">
+							<div className="appointment-splash">
+								<p className="appointment-splash-title">Bloodtest results | St. Adams Hospital</p>
+								<p className="appointment-splash-date">21:th of January at 14:30</p>
+								<p className="appointment-splash-description">
 									this is really just filler text, nothing to see here folks, go on about your daily
 									struggle come on now stop reading i mean it stop please.
 								</p>
 							</div>
 						</div>
-						<Link className="splash-content-link" to="/home">
+						<Link className="splash-content-link" to="/appointments">
 							<p>See all your appointments</p>
 						</Link>
 					</div>
@@ -110,6 +110,7 @@ const Splash = () => {
 								<p>We see that you haven't yet gotten tested for Covid.</p>
 								<a
 									href="https://www.1177.se/Stockholm/sjukdomar--besvar/lungor-och-luftvagar/inflammation-och-infektion-ilungor-och-luftror/om-covid-19--coronavirus/lamna-prov-och-fa-provsvar-om-covid-19/lamna-prov-for-covid-19/"
+									target="_blank"
 									className="inner-splash-content-link"
 									to="/home">
 									<p>Click here to find your nearest test hub</p>

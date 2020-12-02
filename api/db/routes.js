@@ -5,6 +5,7 @@ const mongo = require("./mongo");
 const queries = require("./queries");
 const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
+const moment = require("moment");
 
 router.get("/", async (req, res) => {
 	const rawData = await mongo.db();
@@ -281,18 +282,34 @@ router.post("/", async (req, res) => {
 		],
 		"doctorsNotes": [
 			{
-				"date": "12-01-2020",
+				"date": "01-Dec-2020",
 				"title": "Showing signs of improvement",
 				"for": "Crohn's Disease",
 				"description": "Patient is showing signs of improvement. Will continue prescribed dosage.",
 				"doctor": "Dr. Feelgood",
 			},
 			{
-				"date": "12-01-2020",
+				"date": "01-Dec-2020",
 				"title": "Notes from latest visit",
 				"for": "Annual Check-up",
 				"description": "Except for previous Crohn's diagnose patient is healthy.",
 				"doctor": "Dr. Feelgood",
+			},
+		],
+		"appointments": [
+			{
+				"date": moment().format("Do MMM, h:mm a"),
+				"title": "Quarterly check-up",
+				"hospital": "St. Adams Hospital",
+				"description":
+					"Quarterly check-up to control nutrition and medical development. Please leave a blood test at your nearest lab atleast two weeks before your appointment",
+			},
+			{
+				"date": moment().format("Do MMM, h:mm a"),
+				"title": "Bloodtest results",
+				"hospital": "St. Adams Hospital",
+				"description":
+					"Bloodtest check-up to control blood levels. Please leave a blood test at your nearest lab atleast two weeks before your appointment",
 			},
 		],
 	};
