@@ -1,8 +1,24 @@
+.appointments-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2em;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 2em;
+}
+
+.appointments {
+    grid-column: 1;
+    grid-row: 1/3;
+    align-content: flex-start;
+    max-width: 580px;
+    margin: 0em auto;
+}
+
 .appointment {
     display: grid;
-    grid-template-rows: minmax(4em, 20%) auto;
+    grid-template-rows: minmax(5em, 20%) auto;
     grid-row-gap: .5em;
-    min-height: 12em;
+    min-height: 15em;
     max-height: 20em;
     width: 90%;
 
@@ -20,44 +36,36 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 2em;
-    grid-template-rows: 1.5em 1.5em;
+    grid-template-rows: 50% 50%;
 
     padding: .5em 1em;
-
-    background-color: var(--lightest-blue);
 }
 
 .appointment-title {
     grid-column: 1;
-    grid-row: 1;
-    font-size: 1.2em;
+    grid-row: 1/3;
+    text-align: left;
+    align-self: center;
+    font-size: 1.4em;
     letter-spacing: 0.05em;
 }
 
-.appointment-for {
-    grid-column: 1;
-    grid-row: 2;
-    color: var(--alt-transparent);
-}
-
-.appointment-doctor {
+.appointment-hospital {
     grid-column: 2/3;
     grid-row: 1;
     text-align: right;
-    align-self: center;
-    font-weight: 300;
+    font-size: 1.3em;
+    font-weight: 500;
     letter-spacing: 0.04em;
-    color: var(--alt-transparent);
 }
 
 .appointment-date {
     grid-column: 2/3;
     grid-row: 2;
     text-align: right;
-    align-self: center;
-    font-weight: 300;
+    font-size: 1.1em;
+    font-weight: 500;
     letter-spacing: 0.04em;
-    color: var(--alt-transparent);
 }
 
 .appointment-body {
@@ -81,4 +89,9 @@
 .appointment-description {
     letter-spacing: 0.05em;
     overflow-y: auto;
+}
+
+.appointments-upcoming,
+.appointments-passed {
+    max-width: 580px;
 }
