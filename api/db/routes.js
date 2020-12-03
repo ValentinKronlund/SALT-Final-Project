@@ -207,6 +207,7 @@ router.post("/", async (req, res) => {
 				Activity: "Walk Doggo",
 				Description: "He needs a walk",
 				Time: "14:00",
+				Date: "2020-03-12",
 			},
 		],
 		"diagnoses": [
