@@ -24,6 +24,7 @@ button {
 
 .activity-label {
     transition: all 0.2s;
+    order: 0;
 
     padding: 10px 10px 15px 10px;
     margin: 20px 20% 10px 20%;
@@ -34,8 +35,18 @@ button {
     border-bottom-right-radius: 0.4em;
     border-left: solid 8px transparent;
 }
+
+.activity-label.done {
+    text-decoration: line-through;
+    order: 1;
+}
+
 .activity-label:hover {
     border-left: solid 8px #00B3D3;
+}
+
+.activity-label.done:hover {
+    border-left: solid 8px crimson;
 }
 
 .activity-date {
@@ -89,7 +100,7 @@ button {
 
 .buttons {
     height: 30px;
-    width: 100px;
+    width: 120px;
 
     float: right;
     cursor: pointer;

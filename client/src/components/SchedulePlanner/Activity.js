@@ -10,6 +10,8 @@ export default function Activity({ Activity, Description, Time, userDate, delete
 	const updateActivitiesArray = useContext(UpdateAtivitiesContext);
 	const user = useContext(Context);
 
+	const [isDone, setIsDone] = useState(false);
+
 	const formatDate = () => {
 		let d = new Date(userDate);
 		const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
@@ -19,6 +21,10 @@ export default function Activity({ Activity, Description, Time, userDate, delete
 		
 		return (<p>{formattedDate}</p>);
 	}
+
+	const changeState = () => {
+		setIsDone(!isDone)
+	};
 
 	const removeActivity = () => {
 		const newArray = ActivitiesArray;
@@ -49,8 +55,8 @@ export default function Activity({ Activity, Description, Time, userDate, delete
 	};
 
 	return (
-		<div className="activity-label">
-			<p className="activity-date">{userDate ? formatDate() : null}</p>
+		<div className={"activity-label" + (isDone ? " done" : "")}>
+			<div className="activity-date">{userDate ? formatDate() : null}</div>
 			<div className="activity">
 				<div className="time-text">
 					<p>{Time}</p>
@@ -65,7 +71,7 @@ export default function Activity({ Activity, Description, Time, userDate, delete
 				</div>
 
 				<div className="button-container">
-				<button className="buttons">Mark as done</button>
+				<button className="buttons" onClick={changeState}>Mark as {isDone ? "un-done" : "done"}</button>
 				<button className="buttons" onClick={removeActivity}>
 					Delete
 				</button>
