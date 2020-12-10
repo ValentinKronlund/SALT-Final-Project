@@ -2,7 +2,7 @@ const express = require("express");
 const mongoDB = require("./db/routes");
 const cors = require("cors");
 const app = express();
-const port = process.env.PORT || 1337;
+const port = process.env.PORT || 1337; //This comment was added because heroku is a poopy-head
 
 app.use(cors());
 app.use(express.json());
