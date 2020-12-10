@@ -15,6 +15,27 @@
     "type": "git",
     "url": "git+https://github.com/SebastienKronlund/SALT-Final-Project.git"
   },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "mongodb": "^3.6.3",
+    "socket.io": "^3.0.3",
+    "uuid": "^8.3.1",
+    "@auth0/auth0-react": "^1.2.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.0",
+    "draggable-react": "^1.0.0-beta.12",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-draggable": "^4.4.3",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.1",
+    "web-vitals": "^0.2.4"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
