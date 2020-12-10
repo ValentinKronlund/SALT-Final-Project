@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 1337;
 
-app.use("/", express.static("../client/build"));
+app.use(express.static("./client/build"));
 app.use(cors());
 app.use(express.json());
 
