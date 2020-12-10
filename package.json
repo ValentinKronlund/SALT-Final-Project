@@ -8,6 +8,9 @@
     "heroku-postbuild": "cd client && npm i && npm run build",
     "start":"node .\\api\\index.js"
   },
+  "engines": {
+    "node": "14.8.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SebastienKronlund/SALT-Final-Project.git"
