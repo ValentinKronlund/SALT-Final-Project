@@ -1,0 +1,21 @@
+{
+  "name": "salt-final-project",
+  "version": "1.0.0",
+  "description": "This is our final project entry for the three month </SALT> Career Program.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "cd client && yarn && yarn run build",
+    "start":"node .\\api\\index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebastienKronlund/SALT-Final-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SebastienKronlund/SALT-Final-Project/issues"
+  },
+  "homepage": "https://github.com/SebastienKronlund/SALT-Final-Project#readme"
+}
