@@ -7,7 +7,7 @@ import Activity from "./Activity";
 import Header from "../static/Header";
 import Footer from "../static/Footer";
 import Background from "../static/Background";
-import AddActivity from "../SchedulePlanner/AddActivity";
+import AddActivity from "./AddActivity";
 
 import "../../styles/schedulePlanner.css";
 
