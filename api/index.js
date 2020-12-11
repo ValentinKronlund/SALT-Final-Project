@@ -2,12 +2,13 @@ const express = require("express");
 const mongoDB = require("./db/routes");
 const cors = require("cors");
 const app = express();
-const port = 1337;
+const port = process.env.PORT || 1337;
 
+app.use(express.static("./client/build"));
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
 	res.send("For the dark lady!");
 });
 

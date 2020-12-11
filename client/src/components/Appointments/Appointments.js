@@ -6,6 +6,8 @@ import Footer from "../static/Footer";
 import moment from "moment";
 import "./appointments.css";
 
+import "./appointments.css";
+
 export default function Appointments() {
 	const userInfo = useContext(UserContext).userInfo;
 	const setUserInfo = useContext(UserContext).setUserInfo;
