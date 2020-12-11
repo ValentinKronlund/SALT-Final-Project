@@ -46,12 +46,14 @@ const Chat = () => {
 		setUserInfo(fetchedUser);
 	};
 
-	useEffect(() => {
+	useEffect(async () => {
 		let messages;
 		if (userInfo.messages) {
 			messages = userInfo.messages[recipientId];
 		}
 		setCurrentConversation(messages);
+		const fetchedUser = await updateUser();
+		setUserInfo(fetchedUser);
 	}, [recipientId, userInfo]);
 
 	const generateFeed = () => {
